@@ -23,7 +23,7 @@ class User extends CI_Controller {
  
     public function users()
     {
-        $this->grocery_crud->set_table('user');
+        $this->grocery_crud->set_table('User');
         $output = $this->grocery_crud->render();
  
         $this->_example_output($output);        

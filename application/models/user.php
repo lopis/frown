@@ -3,12 +3,12 @@ Class User extends CI_Model
 {
 
 // table name
- private $tbl_person= 'user';
+ private $tbl_person= 'User';
 
  function login($username, $password)
  {
    $this -> db -> select('id, username, password');
-   $this -> db -> from('user');
+   $this -> db -> from('User');
    $this -> db -> where('username', $username);
    $this -> db -> where('password', MD5($password));
    $this -> db -> limit(1);
