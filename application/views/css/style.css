@@ -1,0 +1,9 @@
+body{
+	background-color: #EEE;
+	font-family: sans-serif;
+}
+
+div#body{
+	max-width: 900px;
+	margin: auto;
+}
