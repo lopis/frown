@@ -1,5 +1,5 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
- 
+session_start(); //we need to call PHP's session object to access it through CI
 class Item extends CI_Controller {
  
     function __construct()
@@ -8,17 +8,26 @@ class Item extends CI_Controller {
  
         /* Standard Libraries of codeigniter are required */
         $this->load->database();
-        $this->load->helper('url');
         /* ------------------ */ 
- 
+        $this->load->model('Item_model');
         $this->load->library('grocery_CRUD');
+        $this->load->helper(array('form', 'url'));
  
     }
  
     public function index()
     {
-        echo "<h1>Welcome to the world of Codeigniter</h1>";//Just an example to ensure that we get into the function
-        die();
+        if(!$this->session->userdata('logged_in'))
+       {
+        redirect('home/login', 'refresh');
+       }
+        $data['items'] = $this->Item_model->get_all();
+        $data['title'] = 'Items';
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('item/index', $data);
+        $this->load->view('templates/footer');
+
     }
  
     public function items()
@@ -34,4 +43,120 @@ class Item extends CI_Controller {
     {
         $this->load->view('template.php',$output);    
     }
+
+    public function view($id)
+    {
+        if(!$this->session->userdata('logged_in'))
+       {
+        redirect('home/login', 'refresh');
+       }
+        $data['item'] = $this->Item_model->get_by_id($id)->row();
+        $data['title'] = 'Items';
+        $this->load->view('templates/header', $data);
+        $this->load->view('item/view',$data);
+        $this->load->view('templates/footer');
+    }
+    
+    public function edit($id)
+    {
+        if(!$this->session->userdata('logged_in'))
+       {
+        redirect('home/login', 'refresh');
+       }
+        $item = array('name' => $this->input->post('name'),
+                            'layer' => $this->input->post('layer'),
+                            'color' => $this->input->post('color'),
+                            'svg' => $this->input->post('svg'),
+                            'type' => $this->input->post('type'));
+                    
+        $this->Item_model->edit($id,$item);
+        
+        $this->load->helper('url');
+        redirect('index.php/item/index');
+    }
+    
+    public function update($id)
+    {
+        if(!$this->session->userdata('logged_in'))
+       {
+        redirect('home/login', 'refresh');
+       }
+        //$data['utilizador'] = $this->Utilizador_model->edit($id);
+        $data['title'] = 'Items';
+        $data['id']=$id;
+        $data['item'] = $this->Item_model->get_by_id($id)->row();
+        $this->load->view('templates/header', $data);
+        $this->load->view('item/update', $data);
+        $this->load->view('templates/footer');
+    }
+        public function delete($id)
+    {
+        if(!$this->session->userdata('logged_in'))
+       {
+        redirect('home/login', 'refresh');
+       }
+        $this->Item_model->delete($id);
+        $this->load->helper('url');
+        redirect('item/index');
+    }
+
+    public function create()
+    {
+        if(!$this->session->userdata('logged_in'))
+       {
+        redirect('home/login', 'refresh');
+       }
+        //$data['utilizador'] = $this->Utilizador_model->create();
+        $data['title'] = 'Items';
+        $this->load->view('templates/header', $data);
+        $this->load->view('item/create');
+        $this->load->view('templates/footer');
+    }
+    
+    public function add()
+    {
+        /*if (strpos($this->input->post('userfile'),'.svg') == false) {
+          // redirect('home/index', 'refresh');
+           echo $this->input->post('userfile'); 
+           echo "aki";
+        }*/
+        //echo file_get_contents($this->input->post('svg'));
+        /*if(!$this->session->userdata('logged_in'))
+       {
+        redirect('home/login', 'refresh');
+       }
+        $item = array('name' => $this->input->post('name'),
+                            'layer' => $this->input->post('layer'),
+                            'color' => $this->input->post('color'),
+                            'svg' => $this->input->post('svg'),
+                            'type' => $this->input->post('type'));
+        $this->Item_model->create($item);
+        
+        $this->load->helper('url');
+        redirect('item/index');*/
+        $config['upload_path'] = './uploads/';
+        $config['allowed_types'] = '*';
+
+        $this->load->library('upload', $config);
+
+        if ( ! $this->upload->do_upload())
+        {
+            $error = array('error' => $this->upload->display_errors());
+
+            echo $error;
+        }
+        else
+        {
+            $data = $this->upload->data();
+            if (strpos($data['file_name'],'.svg') == false) {
+               unlink('./uploads/'.$data['file_name']); 
+               unlink('./uploads/'.$data['file_name']);
+            }
+            $svg=file_get_contents('./uploads/'.$data['file_name']);
+            $xml = new SimpleXMLElement($svg);
+
+            unlink('./uploads/'.$data['file_name']);
+        }
+    }
 }
+?>

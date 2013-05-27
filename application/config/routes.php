@@ -37,6 +37,37 @@
 | in the URL cannot be matched to a valid route.
 |
 */
+$route['user/create'] = 'user/create/';
+$route['user/add'] = 'user/add/';
+$route['user/update/(:any)'] = 'user/update/$1/';
+$route['user/edit/(:any)'] = 'user/edit/$1/';
+$route['user/view/(:any)'] = 'user/view/$1';
+$route['user/delete/(:any)'] = 'user/delete/$1/';
+$route['user/index'] = 'user/index';
+$route['user/(:any)'] = 'user';
+$route['user'] = 'user';
+
+$route['avatar/create'] = 'avatar/create/';
+$route['avatar/add'] = 'avatar/add/';
+$route['avatar/update/(:any)'] = 'avatar/update/$1/';
+$route['avatar/edit/(:any)'] = 'avatar/edit/$1/';
+$route['avatar/view/(:any)'] = 'avatar/view/$1';
+$route['avatar/delete/(:any)'] = 'avatar/delete/$1/';
+$route['avatar/index'] = 'avatar/index';
+$route['avatar/(:any)'] = 'avatar';
+$route['avatar'] = 'avatar';
+
+
+$route['item/create'] = 'item/create/';
+$route['item/add'] = 'item/add/';
+$route['item/update/(:any)'] = 'item/update/$1/';
+$route['item/edit/(:any)'] = 'item/edit/$1/';
+$route['item/view/(:any)'] = 'item/view/$1';
+$route['item/delete/(:any)'] = 'item/delete/$1/';
+$route['item/index'] = 'item/index';
+$route['item/(:any)'] = 'item';
+$route['item'] = 'item';
+
 $route['register/create'] = 'register/create';
 $route['register/(:any)'] = 'register';
 $route['register'] = 'register';

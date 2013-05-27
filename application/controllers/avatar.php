@@ -1,5 +1,5 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
- 
+session_start(); //we need to call PHP's session object to access it through CI
 class Avatar extends CI_Controller {
  
     function __construct()
@@ -10,15 +10,24 @@ class Avatar extends CI_Controller {
         $this->load->database();
         $this->load->helper('url');
         /* ------------------ */ 
- 
+        $this->load->model('Avatar_model');
         $this->load->library('grocery_CRUD');
  
     }
  
     public function index()
     {
-        echo "<h1>Welcome to the world of Codeigniter</h1>";//Just an example to ensure that we get into the function
-        die();
+        if(!$this->session->userdata('logged_in'))
+       {
+        redirect('home/login', 'refresh');
+       }
+        $data['avatars'] = $this->Avatar_model->get_all();
+        $data['title'] = 'Avatars';
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('avatar/index', $data);
+        $this->load->view('templates/footer');
+
     }
  
     public function avatars()
@@ -30,8 +39,88 @@ class Avatar extends CI_Controller {
     }
  
     function _example_output($output = null)
- 
     {
         $this->load->view('template.php',$output);    
     }
+
+    public function view($id)
+    {
+        if(!$this->session->userdata('logged_in'))
+       {
+        redirect('home/login', 'refresh');
+       }
+        $data['avatar'] = $this->Avatar_model->get_by_id($id)->row();
+        $data['title'] = 'Avatars';
+        $this->load->view('templates/header', $data);
+        $this->load->view('avatar/view',$data);
+        $this->load->view('templates/footer');
+    }
+    
+    public function edit($id)
+    {
+        if(!$this->session->userdata('logged_in'))
+       {
+        redirect('home/login', 'refresh');
+       }
+        $avatar = array('name' => $this->input->post('name'),
+                            'svg' => $this->input->post('svg'));
+                    
+        $this->Avatar_model->edit($id,$avatar);
+        
+        $this->load->helper('url');
+        redirect('avatar/index');
+    }
+    
+    public function update($id)
+    {
+        if(!$this->session->userdata('logged_in'))
+       {
+        redirect('home/login', 'refresh');
+       }
+        //$data['utilizador'] = $this->Utilizador_model->edit($id);
+        $data['title'] = 'Avatars';
+        $data['id']=$id;
+        $data['avatar'] = $this->Avatar_model->get_by_id($id)->row();
+        $this->load->view('templates/header', $data);
+        $this->load->view('avatar/update', $data);
+        $this->load->view('templates/footer');
+    }
+        public function delete($id)
+    {
+        if(!$this->session->userdata('logged_in'))
+       {
+        redirect('home/login', 'refresh');
+       }
+        $this->Avatar_model->delete($id);
+        $this->load->helper('url');
+        redirect('avatar/index');
+    }
+
+    public function create()
+    {
+        if(!$this->session->userdata('logged_in'))
+       {
+        redirect('home/login', 'refresh');
+       }
+        //$data['utilizador'] = $this->Utilizador_model->create();
+        $data['title'] = 'Utilizadores';
+        $this->load->view('templates/header', $data);
+        $this->load->view('avatar/create');
+        $this->load->view('templates/footer');
+    }
+    
+    public function add()
+    {
+        if(!$this->session->userdata('logged_in'))
+       {
+        redirect('home/login', 'refresh');
+       }
+        $avatar = array('name' => $this->input->post('name'),
+                            'svg' => $this->input->post('svg'));
+        $this->Avatar_model->create($avatar);
+        
+        $this->load->helper('url');
+        redirect('avatar/index');
+    }
 }
+?>
