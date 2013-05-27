@@ -11,18 +11,22 @@
 	);
 
 ?>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<title>Frown - <?php echo $title ?></title>
-    <link rel="stylesheet" href="<?php echo base_url();?>application/views/css/style.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>application/views/css/bootstrap-responsive.min.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>application/views/css/bootstrap.min.css">
 </head>
 <body>
-<div id="body">
-<div id="headermenu">
-	<?php 
-		foreach ($header_menu as $key => $value) {
-			echo "[".anchor($value, $key)."] ";
-		}
-	 ?>
+<div class="container">
+<div class="navbar">
+	<ul class="nav">
+		<?php 
+			foreach ($header_menu as $key => $value) {
+				echo "<li>".anchor($value, $key)."</li>";
+			}
+	 	?>
+	</ul>
 </div>
