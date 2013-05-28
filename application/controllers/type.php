@@ -1,6 +1,6 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 session_start(); //we need to call PHP's session object to access it through CI
-class User extends CI_Controller {
+class Type extends CI_Controller {
  
     function __construct()
     {
@@ -10,7 +10,7 @@ class User extends CI_Controller {
         $this->load->database();
         $this->load->helper('url');
         /* ------------------ */ 
-        $this->load->model('User_model');
+        $this->load->model('Type_model');
         $this->load->library('grocery_CRUD');
  
     }
@@ -21,24 +21,24 @@ class User extends CI_Controller {
        {
         redirect('home/login', 'refresh');
        }
-        $data['users'] = $this->User_model->get_all();
-        $data['title'] = 'Users';
+        $data['types'] = $this->Type_model->get_all();
+        $data['title'] = 'Types';
 
         $this->load->view('templates/header', $data);
-        $this->load->view('user/index', $data);
+        $this->load->view('type/index', $data);
         $this->load->view('templates/footer');
+
     }
  
-    public function users()
+    public function types()
     {
-        $this->grocery_crud->set_table('User');
+        $this->grocery_crud->set_table('type');
         $output = $this->grocery_crud->render();
  
         $this->_example_output($output);        
     }
  
     function _example_output($output = null)
- 
     {
         $this->load->view('template.php',$output);    
     }
@@ -47,12 +47,12 @@ class User extends CI_Controller {
     {
         if(!$this->session->userdata('logged_in'))
        {
-        redirect('index.php/home/login', 'refresh');
+        redirect('home/login', 'refresh');
        }
-        $data['user'] = $this->User_model->get_by_id($id)->row();
-        $data['title'] = 'Users';
+        $data['type'] = $this->Type_model->get_by_id($id)->row();
+        $data['title'] = 'Types';
         $this->load->view('templates/header', $data);
-        $this->load->view('user/view',$data);
+        $this->load->view('type/view',$data);
         $this->load->view('templates/footer');
     }
     
@@ -60,31 +60,28 @@ class User extends CI_Controller {
     {
         if(!$this->session->userdata('logged_in'))
        {
-        redirect('index.php/home/login', 'refresh');
+        redirect('home/login', 'refresh');
        }
-        $user = array('username' => $this->input->post('username'),
-                    'email' => $this->input->post('email'),
-                    'password' => MD5($this->input->post('password')),
-                    'admin' => $this->input->post('admin'));
+        $type = array('name' => $this->input->post('name'));
                     
-        $this->User_model->edit($id,$user);
+        $this->Type_model->edit($id,$type);
         
         $this->load->helper('url');
-        redirect('user/index');
+        redirect('type/index');
     }
     
     public function update($id)
     {
         if(!$this->session->userdata('logged_in'))
        {
-        redirect('index.php/home/login', 'refresh');
+        redirect('home/login', 'refresh');
        }
         //$data['utilizador'] = $this->Utilizador_model->edit($id);
-        $data['title'] = 'Users';
+        $data['title'] = 'Types';
         $data['id']=$id;
-        $data['user'] = $this->User_model->get_by_id($id)->row();
+        $data['type'] = $this->Type_model->get_by_id($id)->row();
         $this->load->view('templates/header', $data);
-        $this->load->view('user/update', $data);
+        $this->load->view('type/update', $data);
         $this->load->view('templates/footer');
     }
     
@@ -92,14 +89,38 @@ class User extends CI_Controller {
     {
         if(!$this->session->userdata('logged_in'))
        {
-        redirect('index.php/home/login', 'refresh');
+        redirect('home/login', 'refresh');
        }
-        $this->User_model->delete($id);
+        $this->Type_model->delete($id);
         $this->load->helper('url');
-        redirect('home/logout');
+        redirect('type/index');
     }
 
+    public function create()
+    {
+        if(!$this->session->userdata('logged_in'))
+       {
+        redirect('home/login', 'refresh');
+       }
+        //$data['utilizador'] = $this->Utilizador_model->create();
+        $data['title'] = 'Types';
+        $this->load->view('templates/header', $data);
+        $this->load->view('type/create');
+        $this->load->view('templates/footer');
+    }
+    
+    public function add()
+    {
+        if(!$this->session->userdata('logged_in'))
+       {
+        redirect('home/login', 'refresh');
+       }
+        $type = array('name' => $this->input->post('name'));
+
+        $this->Type_model->create($type);
+
+        $this->load->helper('url');
+        redirect('type/index');
+    }
 }
-/* End of file main.php */
-/* Location: ./application/controllers/main.php */
 ?>

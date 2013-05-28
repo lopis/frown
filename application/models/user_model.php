@@ -65,6 +65,10 @@ Class User_model extends CI_Model
 
   public function delete($id)
   {
+      $this->db->where('id_user', $id);
+      $this->db->delete('Avatar_User');
+
+
       $this->db->where('id', $id);
       $this->db->delete($this->tbl_person);
   }

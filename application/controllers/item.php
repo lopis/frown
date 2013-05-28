@@ -72,7 +72,7 @@ class Item extends CI_Controller {
         $this->Item_model->edit($id,$item);
         
         $this->load->helper('url');
-        redirect('index.php/item/index');
+        redirect('item/index');
     }
     
     public function update($id)
@@ -110,6 +110,19 @@ class Item extends CI_Controller {
         $data['title'] = 'Items';
         $this->load->view('templates/header', $data);
         $this->load->view('item/create');
+        $this->load->view('templates/footer');
+    }
+
+    public function create_manual()
+    {
+        if(!$this->session->userdata('logged_in'))
+       {
+        redirect('home/login', 'refresh');
+       }
+        //$data['utilizador'] = $this->Utilizador_model->create();
+        $data['title'] = 'Items';
+        $this->load->view('templates/header', $data);
+        $this->load->view('item/create_manual');
         $this->load->view('templates/footer');
     }
     
@@ -150,12 +163,127 @@ class Item extends CI_Controller {
             $data = $this->upload->data();
             if (strpos($data['file_name'],'.svg') == false) {
                unlink('./uploads/'.$data['file_name']); 
-               unlink('./uploads/'.$data['file_name']);
+               echo "Wrong file type";
             }
+            $layer="";
+            $type="";
+            $newSvg="";
+            $name="";
+            $color="";
             $svg=file_get_contents('./uploads/'.$data['file_name']);
             $xml = new SimpleXMLElement($svg);
+            $xml['height']='128px';
+            $xml['width']='128px';
+            $layer=$xml['layer'];
+            $name=$xml['id'];
+            $type=$xml['type'];
+            $newSvg=$xml->asXml();
+            if($layer=="" || $type=="" || $newSvg=="" || $name=="")
+            {
+               unlink('./uploads/'.$data['file_name']); 
+               echo "Not Enough Information!";
+                echo 'Layer: '.$layer;
+                echo 'Type: '.$type;
+                echo 'Svg: '.$newSvg;
+                echo 'Name: '.$name;
+            }
+            $item = array('name' => (string)$name,
+                    'layer' => $layer,
+                    'color' => $color,
+                    'svg' => (string)$newSvg);
 
+            $this->Item_model->create($item, $type);
             unlink('./uploads/'.$data['file_name']);
+            $this->load->helper('url');
+            redirect('item/index');
+
+        }
+    }
+
+    public function add_manual()
+    {
+        /*if (strpos($this->input->post('userfile'),'.svg') == false) {
+          // redirect('home/index', 'refresh');
+           echo $this->input->post('userfile'); 
+           echo "aki";
+        }*/
+        //echo file_get_contents($this->input->post('svg'));
+        /*if(!$this->session->userdata('logged_in'))
+       {
+        redirect('home/login', 'refresh');
+       }
+        $item = array('name' => $this->input->post('name'),
+                            'layer' => $this->input->post('layer'),
+                            'color' => $this->input->post('color'),
+                            'svg' => $this->input->post('svg'),
+                            'type' => $this->input->post('type'));
+        $this->Item_model->create($item);
+        
+        $this->load->helper('url');
+        redirect('item/index');*/
+        $config['upload_path'] = './uploads/';
+        $config['allowed_types'] = '*';
+
+        $this->load->library('upload', $config);
+
+        if ( ! $this->upload->do_upload())
+        {
+            $error = array('error' => $this->upload->display_errors());
+
+            echo $error;
+        }
+        else
+        {
+            $data = $this->upload->data();
+            if (strpos($data['file_name'],'.svg') == false) {
+               unlink('./uploads/'.$data['file_name']); 
+               echo "Wrong file type";
+            }
+            $layer=$this->input->post('layer');
+            $type=$this->input->post('type');
+            $newSvg="";
+            $name=$this->input->post('name');
+            $color=$this->input->post('color');
+
+            $svg=file_get_contents('./uploads/'.$data['file_name']);
+            $xml = new SimpleXMLElement($svg);
+            $xml['height']='128px';
+            $xml['width']='128px';
+            if(isset($xml['layer']))
+            {
+                $xml['layer']=$layer;
+            }
+            else
+            {
+                $xml->addAttribute('layer', $layer);
+            }
+            if(isset($xml['type']))
+            {
+                $xml['type']=$type;
+            }
+            else
+            {
+                $xml->addAttribute('type', $type);
+            }
+            if(isset($xml['id']))
+            {
+                $xml['id']=$name;
+            }
+            else
+            {
+                $xml->addAttribute('id', $name);
+            }
+            $newSvg=$xml->asXml();
+            $item = array('name' => (string)$name,
+                    'layer' => $layer,
+                    'color' => $color,
+                    'svg' => (string)$newSvg);
+
+            $this->Item_model->create($item, $type);
+            unlink('./uploads/'.$data['file_name']);
+            //$this->load->helper('url');
+            redirect('item/index');
+
         }
     }
 }

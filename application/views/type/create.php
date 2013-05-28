@@ -1,7 +1,7 @@
-<?php echo form_open_multipart('item/add');?>
+<?php echo form_open_multipart('type/add');?>
 <br/>
-<label for="userfile">SVG:</label>
-<input type="file" name="userfile" size="20" />
+<label for="name">Name:</label>
+<input type="text" name="name" id="name" size="20" />
 
 <br /><br />
 

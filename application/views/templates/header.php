@@ -6,6 +6,7 @@
 		"Avatars" => base_url()."index.php/avatar/index",
 		"Items" => base_url()."index.php/item/index",
 		"Users" => base_url()."index.php/user/index",
+		"Types" => base_url()."index.php/type/index",
 		"Profile" => base_url()."index.php/user/view/".$session_data['id'],
 		"Logout" => base_url()."index.php/home/logout",
 	);

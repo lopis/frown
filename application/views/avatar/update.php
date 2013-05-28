@@ -1,5 +1,5 @@
 <?php $this->load->helper('form'); ?>
- 
+  <br/>
 <?php echo form_open('avatar/edit/'.$id); ?>
  
      <label for="name">Name:</label>

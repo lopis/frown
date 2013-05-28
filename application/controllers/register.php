@@ -5,7 +5,7 @@ class Register extends CI_Controller {
  function __construct()
  {
    parent::__construct();
-   $this->load->model('user','',TRUE);
+   $this->load->model('User_model','',TRUE);
  }
 
  function index()
@@ -21,7 +21,7 @@ class Register extends CI_Controller {
 					'password' => MD5($this->input->post('password')),
 					'admin' => 0);
 
-   $this->user->create($user);
+   $this->User_model->create($user);
    redirect('login', 'refresh');
  }
 

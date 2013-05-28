@@ -17,10 +17,37 @@ Class Avatar_model extends CI_Model
       return $this->db->get($this->tbl_person);
   }
 
-  public function create($avatar)
+  public function create($avatar, $id_user)
   {
 
    $this->db->insert($this->tbl_person, $avatar);
+   $id_avatar= $this->db->insert_id();
+   
+   $avataruser = array('id_avatar' => $id_avatar,
+                            'id_user' => $id_user);
+
+   $this->db->insert('Avatar_User',$avataruser);
+
+   $avataritem = array('id_avatar' => $id_avatar,
+                            'id_item' => 1);
+
+   $this->db->insert('Avatar_Item',$avataritem);
+
+   $this ->db-> select('id, svg');
+   $this ->db-> from('Item');
+   $this ->db-> where('id', 1);
+   $this ->db-> limit(1);
+   $query1 = $this->db->get();
+   if($query1 -> num_rows() == 1)
+   {
+      foreach ($query1->result() as $row)
+      {
+        $avatar['svg']=$row->svg;
+      }
+   }
+   $this->db->where('id', $id_avatar);
+   $this->db->update($this->tbl_person, $avatar);
+
    return $this->db->insert_id();
 
   }
@@ -38,6 +65,12 @@ Class Avatar_model extends CI_Model
 
   public function delete($id)
   {
+      $this->db->where('id_avatar', $id);
+      $this->db->delete('Avatar_User');
+
+      $this->db->where('id_avatar', $id);
+      $this->db->delete('Avatar_Item');
+
       $this->db->where('id', $id);
       $this->db->delete($this->tbl_person);
   }

@@ -85,7 +85,8 @@ class Avatar extends CI_Controller {
         $this->load->view('avatar/update', $data);
         $this->load->view('templates/footer');
     }
-        public function delete($id)
+    
+    public function delete($id)
     {
         if(!$this->session->userdata('logged_in'))
        {
@@ -103,7 +104,7 @@ class Avatar extends CI_Controller {
         redirect('home/login', 'refresh');
        }
         //$data['utilizador'] = $this->Utilizador_model->create();
-        $data['title'] = 'Utilizadores';
+        $data['title'] = 'Avatars';
         $this->load->view('templates/header', $data);
         $this->load->view('avatar/create');
         $this->load->view('templates/footer');
@@ -116,9 +117,13 @@ class Avatar extends CI_Controller {
         redirect('home/login', 'refresh');
        }
         $avatar = array('name' => $this->input->post('name'),
-                            'svg' => $this->input->post('svg'));
-        $this->Avatar_model->create($avatar);
-        
+                            'svg' => "");
+
+        $session_data = $this->session->userdata('logged_in');
+        $id_user = $session_data['id'];
+
+        $this->Avatar_model->create($avatar, $id_user);
+
         $this->load->helper('url');
         redirect('avatar/index');
     }

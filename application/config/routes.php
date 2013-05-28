@@ -37,6 +37,17 @@
 | in the URL cannot be matched to a valid route.
 |
 */
+
+$route['type/create'] = 'type/create/';
+$route['type/add'] = 'type/add/';
+$route['type/update/(:any)'] = 'type/update/$1/';
+$route['type/edit/(:any)'] = 'type/edit/$1/';
+$route['type/view/(:any)'] = 'type/view/$1';
+$route['type/delete/(:any)'] = 'type/delete/$1/';
+$route['type/index'] = 'type/index';
+$route['type/(:any)'] = 'type';
+$route['type'] = 'type';
+
 $route['user/create'] = 'user/create/';
 $route['user/add'] = 'user/add/';
 $route['user/update/(:any)'] = 'user/update/$1/';
@@ -59,7 +70,9 @@ $route['avatar'] = 'avatar';
 
 
 $route['item/create'] = 'item/create/';
+$route['item/create_manual'] = 'item/create_manual/';
 $route['item/add'] = 'item/add/';
+$route['item/add_manual'] = 'item/add_manual/';
 $route['item/update/(:any)'] = 'item/update/$1/';
 $route['item/edit/(:any)'] = 'item/edit/$1/';
 $route['item/view/(:any)'] = 'item/view/$1';
