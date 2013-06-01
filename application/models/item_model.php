@@ -17,6 +17,26 @@ Class Item_model extends CI_Model
       return $this->db->get($this->tbl_person);
   }
 
+  public function get_type_by_id($id)
+  {
+      $this ->db-> select('id, id_type');
+      $this ->db-> from('Item_Type');
+      $this ->db-> where('id_item', $id);
+      $this ->db-> limit(1);
+      $query1 = $this->db->get();
+      $type=0;
+      if($query1 -> num_rows() == 1)
+     {
+        foreach ($query1->result() as $row)
+        {
+          $type=$row->id_type;
+        }
+        $this->db->where('id',$type);
+        return $this->db->get('Type');
+     }
+     else return null;
+  }
+
   public function create($item, $type)
   {
 

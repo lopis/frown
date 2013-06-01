@@ -37,6 +37,13 @@
 | in the URL cannot be matched to a valid route.
 |
 */
+$route['api/makeavatar/(:any)'] = 'api/makeavatar/$1';
+$route['api/viewavatar/(:any)'] = 'api/getAvatar/$1';
+$route['api/getavatars'] = 'api/getAllAvatars/';
+$route['api/viewitem/(:any)'] = 'api/getItem/$1';
+$route['api/getitems'] = 'api/getAllItems/';
+$route['api/index'] = 'api/index';
+
 
 $route['type/create'] = 'type/create/';
 $route['type/add'] = 'type/add/';
