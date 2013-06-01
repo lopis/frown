@@ -21,7 +21,7 @@ Class Avatar_model extends CI_Model
   {
 
    $this->db->insert($this->tbl_person, $avatar);
-   $id_avatar= $this->db->insert_id();
+ /*  $id_avatar= $this->db->insert_id();
    
    $avataruser = array('id_avatar' => $id_avatar,
                             'id_user' => $id_user);
@@ -48,7 +48,7 @@ Class Avatar_model extends CI_Model
    $this->db->where('id', $id_avatar);
    $this->db->update($this->tbl_person, $avatar);
 
-   return $this->db->insert_id();
+   return $this->db->insert_id();*/
 
   }
 

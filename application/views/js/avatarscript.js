@@ -3,19 +3,23 @@
  * And requires jQuery
  */
 
-var avatar = [];
+var avatar = {};
 
 
-function addToAvatar(item){
-	avatar.push(item);
+function addToAvatar(item, layer){
+	avatar[layer] = item;
+	keys = Object.keys(avatar);
+	keys.sort();
+
 	url = base_url + "index.php/api/makeavatar?";
-	for (i = 0; i < avatar.length; ++i) {
-		url += "item" + (i+1) + "=" + avatar[i] + "&";
+	for (i = 0; i < keys.length; ++i) {
+		url += "item" + (i+1) + "=" + avatar[keys[i]] + "&";
 	}
 	$.get(url,
 		function(xml) {
 	        $("#avatar > svg").replaceWith(xml);
-	        
+	        $("input#svg").val(xml);
+	        console.log($("#svg_form").val());
 	    }
 	    ,"text");
 }
@@ -25,7 +29,7 @@ $('.slider-item')
 	.css('cursor', 'pointer')
 	.click(
 		function(){
-			addToAvatar(this.id);
+			addToAvatar(this.id, $(this).attr('layer'));
 		}
 	)
 	.hover(

@@ -119,7 +119,7 @@ class Avatar extends CI_Controller {
         redirect('home/login', 'refresh');
        }
         $avatar = array('name' => $this->input->post('name'),
-                            'svg' => "");
+                            'svg' => $this->input->post('svg'));
 
         $session_data = $this->session->userdata('logged_in');
         $id_user = $session_data['id'];

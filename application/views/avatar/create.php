@@ -1,6 +1,7 @@
 <?php $this->load->helper('form'); ?>
 
 <?php echo form_open('avatar/add'); ?>
+<input id="svg" type="hidden" name="svg" value="..." />
  	<br/>
      <label for="name">Name:</label>
      <input required=true type="text" size="20" id="name" name="name"/>
@@ -31,7 +32,7 @@
     				if($i == 0){
     					echo "<li><div class='grid-item'>";
     				}
-    				echo "<div class='slider-item' id='" . $item['id'] . "'>";
+    				echo "<div class='slider-item' id='" . $item['id'] . "' layer='" . $item['layer'] . "'>";
     				echo $item['svg'];
     				echo "</div>";
     				$i = $i + 1;
