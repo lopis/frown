@@ -129,7 +129,7 @@ class API extends CI_Controller {
         $dom->formatOutput = true;
         $header= $dom->createDocumentFragment();
         $header->appendXML('<svg version="1.1" baseProfile="basic"
-     id="makeavatar" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     id="makeavatar" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="128px" height="128px"
      viewBox="0 0 512 512" xml:space="preserve"></svg>');
         $header = $dom->appendChild($header);

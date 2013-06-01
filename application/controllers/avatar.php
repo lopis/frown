@@ -11,6 +11,7 @@ class Avatar extends CI_Controller {
         $this->load->helper('url');
         /* ------------------ */ 
         $this->load->model('Avatar_model');
+        $this->load->model('Item_model');
         $this->load->library('grocery_CRUD');
  
     }
@@ -105,6 +106,7 @@ class Avatar extends CI_Controller {
        }
         //$data['utilizador'] = $this->Utilizador_model->create();
         $data['title'] = 'Avatars';
+        $data['items'] = $this->Item_model->get_all();
         $this->load->view('templates/header', $data);
         $this->load->view('avatar/create');
         $this->load->view('templates/footer');
