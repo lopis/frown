@@ -135,7 +135,7 @@ class API extends CI_Controller {
         $header = $dom->appendChild($header);
         while($this->input->get('item'.$i)!=null)
             {
-                if($this->Item_model->get_by_id($this->input->get('item'.$i))!=null)
+                if($this->Item_model->get_by_id($this->input->get('item'.$i))->num_rows()!=0)
                 {
                     $item = $this->Item_model->get_by_id($this->input->get('item'.$i))->row();
                     //echo $item->svg;
@@ -149,6 +149,10 @@ class API extends CI_Controller {
                     }
 
                     $svg=$header->appendChild($svg);
+                    $i=$i+1;
+                }
+                else
+                {
                     $i=$i+1;
                 }
             }
