@@ -7,5 +7,6 @@
         	echo "<p>Type: ".$notype."</p>"; 
         	else
         	echo "<p>Type: ".$type->name."</p>";?>
+        <h3><a href=<?php echo base_url()."index.php/api/downloaditem/".$item->id ?> ><?php echo "Download" ?></a></h3>
         <!--<?php echo $item->type;?>-->
     </div>

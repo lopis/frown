@@ -11,6 +11,16 @@ Class Avatar_model extends CI_Model
       return $query->result_array();
   }
 
+  public function get_all_box()
+  {
+      $this ->db-> select('Avatar.id, Avatar.name, Avatar.svg');
+      $this ->db-> from('Avatar');
+      $query = $this->db->get();
+      $data=array();
+      $data['All'] = $query->result_array();
+      return $data;
+  }
+
   public function get_all_AvatarUsers()
   {
       $query = $this->db->get('Avatar_User');

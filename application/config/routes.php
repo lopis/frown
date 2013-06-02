@@ -39,6 +39,8 @@
 */
 $route['api/makeavatar/(:any)'] = 'api/makeavatar/$1';
 $route['api/viewavatar/(:any)'] = 'api/getAvatar/$1';
+$route['api/downloadavatar/(:any)'] = 'api/downloadAvatar/$1';
+$route['api/downloaditem/(:any)'] = 'api/downloadItem/$1';
 $route['api/getavatars'] = 'api/getAllAvatars/';
 $route['api/viewitem/(:any)'] = 'api/getItem/$1';
 $route['api/getitems'] = 'api/getAllItems/';

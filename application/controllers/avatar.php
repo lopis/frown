@@ -27,7 +27,7 @@ class Avatar extends CI_Controller {
         $data['users'] = $this->User_model->fillCombo();
         $data['users']['All'] = 'All';
         $data['avatars'] = $this->Avatar_model->get_all_from_users();
-        $data['avatars']['All'] = $this->Avatar_model->get_all();
+        $data['avatars'] = $this->Avatar_model->get_all_box();
         $data['title'] = 'Avatars';
 
         $this->load->view('templates/header', $data);
@@ -91,6 +91,7 @@ class Avatar extends CI_Controller {
         $data['title'] = 'Avatars';
         $data['id']=$id;
         $data['avatar'] = $this->Avatar_model->get_by_id($id)->row();
+        $data['items'] = $this->Item_model->get_all();
         $this->load->view('templates/header', $data);
         $this->load->view('avatar/update', $data);
         $this->load->view('templates/footer');
