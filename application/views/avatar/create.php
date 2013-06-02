@@ -2,6 +2,7 @@
 
 <?php echo form_open('avatar/add'); ?>
 <input id="svg" type="hidden" name="svg" value="..." />
+<input id="items" type="hidden" name="items" value="" />
  	<br/>
      <label for="name">Name:</label>
      <input required=true type="text" size="20" id="name" name="name"/>

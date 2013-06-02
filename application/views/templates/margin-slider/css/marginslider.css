@@ -8,12 +8,15 @@
 	overflow: hidden;
 	height: auto;
 	display: none;
+	text-align: center;
+	margin: auto;
 }
 
 .marginslider {
 	list-style: none;
 	overflow: hidden;
-	width: 10000px;		
+	width: 10000px;	
+	float: left;
 }
 
 .marginslider li {
@@ -28,8 +31,7 @@
 	cursor: pointer;
 	position: relative;
 	line-height: 25px;
-	width: 45%;
-	float: left;
+	width: 50px;
 }
 
 
@@ -40,7 +42,7 @@
 .slider-item {
   width: 50px;
   height: 50px;
-  margin: 5px;
+  margin: 5px;				/** M **/
   text-align: center;
   float: left;
   overflow: hidden;
@@ -51,13 +53,12 @@ svg{
   height: 100%;
 }
 	.cat li .grid-item .slider-item {
-		width: 100px;
-		height: 100px;
+		width: 100px; 		/** W **/
+		height: 130px;
 	}
 
 	.cat li .grid-item {
-		width: 330px;
-		height: 330px;
+		width: 550px; 		/** 5 * (W + 2M) **/
 	}
 
 #avatar{
@@ -83,3 +84,8 @@ svg{
 		margin: 1px;
 		background-color: #9AB;
 	}
+
+.arrows{
+	width: 100%;
+	text-align: center;
+}

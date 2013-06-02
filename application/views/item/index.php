@@ -1,4 +1,5 @@
 <?php
+    $this->load->helper('form');
     echo "<div class='type'>Type: ".form_dropdown('name', $types, 'All', 'id="catList"')."</div>";
     foreach ($items as $cat => $itemlist) {
         $i=0;
@@ -9,10 +10,19 @@
                 echo "<li><div class='grid-item'>";
             }
             echo "<div class='slider-item' id='".$item['id']."' layer='" . $item['layer'] . "'>";
-            echo $item['svg'];
+            ?>
+
+            <a href="<?php echo base_url()."/index.php/item/view/".$item['id']; ?>">
+                <div class="svg"><?php echo $item['svg']; ?></div>
+                <div class="itemName">
+                    <?php echo $item['name']; ?>
+                </div>
+            </a>
+            
+            <?php
             echo "</div>";
             $i = $i + 1;
-            if($i == 9){
+            if($i == 15){
                 echo "</div></li>";
                 $i = 0;
             }
@@ -21,8 +31,10 @@
             echo "</div></li>";
         }
         echo '</ul>
-            <div class="left-arrow btn btn-large"><i class="icon-chevron-left"> </i></div>
-            <div class="right-arrow btn btn-large"><i class="icon-chevron-right"> </i></div>
+            <div class="arrows">
+                <button class="left-arrow btn btn-large"><i class="icon-chevron-left"> </i></button>
+                <button class="right-arrow btn btn-large"><i class="icon-chevron-right"> </i></button>
+            </div>
         </div>';
     }
  ?>
@@ -39,7 +51,9 @@
     href="<?php echo base_url();?>application/views/templates/margin-slider/css/marginslider.css">
 <script type="text/javascript">
     $("div.cat").css('height', 0);
+    $("div.cat ul").removeClass('marginslider');
     $("div#All").css('height', 'auto');
+    $("div#All ul").addClass('marginslider');
     $(window).load(function(){
         MarginSlider.init({slider: $('.marginslider'), 
            no_visible: 1,

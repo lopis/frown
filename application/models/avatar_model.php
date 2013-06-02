@@ -57,7 +57,7 @@ Class Avatar_model extends CI_Model
         return $data;
   }
 
-  public function create($avatar, $id_user)
+  public function create($avatar, $id_user, $items)
   {
 
    $this->db->insert($this->tbl_person, $avatar);
@@ -68,39 +68,30 @@ Class Avatar_model extends CI_Model
 
    $this->db->insert('Avatar_User',$avataruser);
 
-   /*$avataritem = array('id_avatar' => $id_avatar,
-                            'id_item' => 1);
-
-   $this->db->insert('Avatar_Item',$avataritem);
-
-   $this ->db-> select('id, svg');
-   $this ->db-> from('Item');
-   $this ->db-> where('id', 1);
-   $this ->db-> limit(1);
-   $query1 = $this->db->get();
-   if($query1 -> num_rows() == 1)
-   {
-      foreach ($query1->result() as $row)
-      {
-        $avatar['svg']=$row->svg;
+   foreach ($items as $item) {
+      if ($item != '') {
+        $avataritem = array(
+          'id_avatar' => $id_avatar,
+          'id_item' => $item
+        );
+        $this->db->insert('Avatar_Item', $avataritem);
       }
    }
-   $this->db->where('id', $id_avatar);
-   $this->db->update($this->tbl_person, $avatar);
-
-   return $this->db->insert_id();*/
-
   }
 
-  public function edit($id,$avatar)
+  public function edit($id, $avatar, $items)
   {
-    /*$data = array(
-      'nome' => $nome,
-      'password' => $password,
-      'admin' => $admin
-    );*/
-      $this->db->where('id', $id);
+ /*     $this->db->where('id', $id);
       $this->db->update($this->tbl_person, $avatar);
+      foreach ($items as $item) {
+        if ($item != '') {
+          $avataritem = array(
+          'id_avatar' => $id_avatar,
+          'id_item' => $item
+          );
+          $this->db->insert('Avatar_Item', $avataritem);
+        }
+      }*/
   }
 
   public function delete($id)

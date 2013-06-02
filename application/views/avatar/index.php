@@ -9,7 +9,7 @@
     <?php 
 		$session_data = $this->session->userdata('logged_in');
     	if($session_data['admin']==1 || $session_data['username']==$key){ ?>
-    <tr><?php foreach ($cat as $user_item): ?><?php echo '<td align="center"><a href="update/'.$user_item['id'].'">edit 	</a>|<a href="delete/'.$user_item['id'].'"> 	delete</a></td>'?><?php endforeach ?></tr>
+    <tr><?php foreach ($cat as $user_item): ?><?php echo '<td align="center"><a href="'.base_url().'index.php/avatar/update/'.$user_item['id'].'">edit 	</a>|<a href="'.base_url().'index.php/avatar/delete/'.$user_item['id'].'"> 	delete</a></td>'?><?php endforeach ?></tr>
     <?php }?>
     </table>
 </div>

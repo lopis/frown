@@ -26,13 +26,18 @@
 			<img class="logo" src="<?php echo base_url();?>application/views/img/logo.png"/>
 		</a>
 	</div>
-	<div class="navbar">
-		<ul class="nav">
-			<?php 
+
+
+    <div class="navbar navbar-inverse">
+      <div class="navbar-inner">
+	      <ul class="nav">
+	        <?php 
 				foreach ($header_menu as $key => $value) {
 					echo "<li>".anchor($value, $key)."</li>";
 				}
 		 	?>
-		</ul>
-	</div>
+	      </ul>
+      </div><!-- /.navbar-inner -->
+    </div><!-- /.navbar -->
+
 	<div id="main">

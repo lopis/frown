@@ -51,6 +51,17 @@ Class Item_model extends CI_Model
     return $query->result_array();
   }
 
+  /** returns array of ids **/
+  public function get_avatar_items($id){
+    $this ->db->select('Item.id, Item.name, Item.layer');
+    $this ->db-> from('Avatar, Avatar_Item');
+    $this->db->where("Avatar_Item.id_avatar = $id
+      and Avatar_Item.id_avatar = Avatar.id
+      and Avatar_Item.id_item = Item.id");
+    $query = $this->db->get('Item');
+    return $query->result_array();
+  }
+
   public function get_latest()
   {
       $this ->db-> select('*');

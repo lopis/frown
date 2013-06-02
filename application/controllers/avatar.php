@@ -72,10 +72,12 @@ class Avatar extends CI_Controller {
        {
         redirect('home/login', 'refresh');
        }
-        $avatar = array('name' => $this->input->post('name'),
-                            'svg' => $this->input->post('svg'));
+        $items = explode(',', $this->input->post('items'));
+        $avatar = array(
+            'name' => $this->input->post('name'),
+            'svg' => $this->input->post('svg'));
                     
-        $this->Avatar_model->edit($id,$avatar);
+        $this->Avatar_model->edit($id,$avatar,$items);
         
         $this->load->helper('url');
         redirect('avatar/index');
@@ -91,6 +93,8 @@ class Avatar extends CI_Controller {
         $data['title'] = 'Avatars';
         $data['id']=$id;
         $data['avatar'] = $this->Avatar_model->get_by_id($id)->row();
+        $data['items'] = $this->Item_model->get_all();
+        $data['avatar_items'] = $this->Item_model->get_avatar_items($id);
         $this->load->view('templates/header', $data);
         $this->load->view('avatar/update', $data);
         $this->load->view('templates/footer');
@@ -123,17 +127,18 @@ class Avatar extends CI_Controller {
     
     public function add()
     {
-        if(!$this->session->userdata('logged_in'))
-       {
-        redirect('home/login', 'refresh');
-       }
-        $avatar = array('name' => $this->input->post('name'),
-                            'svg' => $this->input->post('svg'));
+        if(!$this->session->userdata('logged_in')) {
+            redirect('home/login', 'refresh');
+        }
+        $items = explode(',', $this->input->post('items'));
+        $avatar = array(
+            'name' => $this->input->post('name'),
+            'svg' => $this->input->post('svg'));
 
         $session_data = $this->session->userdata('logged_in');
         $id_user = $session_data['id'];
 
-        $this->Avatar_model->create($avatar, $id_user);
+        $this->Avatar_model->create($avatar, $id_user, $items);
 
         $this->load->helper('url');
         redirect('avatar/index');
