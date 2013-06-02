@@ -14,7 +14,7 @@
     	<?php if($avatar_user['id_user']==$user->id){ ?>
     	   <?php foreach ($avatars as $avatar): ?>
     	   	<?php if($avatar['id']==$avatar_user['id_avatar']){
-    			echo '<td id="showbackgroundimage">'.$avatar['svg'].'</td>';
+    			echo '<td >'.$avatar['svg'].'</td>';
     		 } ?>
     		 <?php endforeach ?> 
     		<?php } ?>

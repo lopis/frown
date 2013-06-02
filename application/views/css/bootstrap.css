@@ -6213,7 +6213,7 @@ form.form-signin{
  div#logo {
   margin: auto;
   width: 250px;
-  padding: 5px;
+  padding: 0 0 15px 0;
   border-radius: 5px;
  }
 

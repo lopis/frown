@@ -19,8 +19,9 @@ class Home extends CI_Controller {
      $data['avatars'] = $this->Avatar_model->get_latest();
      $data['myavatars'] = $this->Avatar_model->get_all_by_user($session_data['id']);
      $data['items'] = $this->Item_model->get_latest();
+     $data['title'] = 'Home';
      //$data['id'] = $session_data['id'];
-     $this->load->view('templates/header');
+     $this->load->view('templates/header',$data);
      $this->load->view('home', $data);
      $this->load->view('templates/footer');
      //redirect('index.php/home', 'refresh');

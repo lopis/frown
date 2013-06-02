@@ -1,3 +1,4 @@
+<br/>
 <?php
     $this->load->helper('form');
     echo "<div class='type'>Type: ".form_dropdown('name', $types, 'All', 'id="catList"')."</div>";

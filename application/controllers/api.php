@@ -105,6 +105,66 @@ class API extends CI_Controller {
         echo $xml->asXml();
     }
 
+    public function downloadAvatar($id)
+    {
+        $data['avatar'] = $this->Avatar_model->get_by_id($id)->row();
+
+        $xml = new SimpleXMLElement($data['avatar']->svg);
+
+        header('Content-type: text/xml; charset=utf-8');
+        $file = 'uploads/'.$data['avatar']->name.'.svg';
+        $fh = fopen($file, 'w') or die("can't open file");
+
+        $stringData=$xml->asXml();
+        fwrite($fh, $stringData);
+        fclose($fh);
+        if (file_exists($file)) {
+            header('Content-Description: File Transfer');
+            header('Content-Type: application/octet-stream');
+            header('Content-Disposition: attachment; filename='.basename($file));
+            header('Content-Transfer-Encoding: binary');
+            header('Expires: 0');
+            header('Cache-Control: must-revalidate');
+            header('Pragma: public');
+            header('Content-Length: ' . filesize($file));
+            ob_clean();
+            flush();
+            readfile($file);
+            unlink($file); 
+            exit;
+        }
+    }
+
+    public function downloadItem($id)
+    {
+        $data['item'] = $this->Item_model->get_by_id($id)->row();
+
+        $xml = new SimpleXMLElement($data['item']->svg);
+
+        header('Content-type: text/xml; charset=utf-8');
+        $file = 'uploads/'.str_replace(' ', '_', $data['item']->name).'.svg';
+        $fh = fopen($file, 'w') or die("can't open file");
+
+        $stringData=$xml->asXml();
+        fwrite($fh, $stringData);
+        fclose($fh);
+        if (file_exists($file)) {
+            header('Content-Description: File Transfer');
+            header('Content-Type: application/octet-stream');
+            header('Content-Disposition: attachment; filename='.basename($file));
+            header('Content-Transfer-Encoding: binary');
+            header('Expires: 0');
+            header('Cache-Control: must-revalidate');
+            header('Pragma: public');
+            header('Content-Length: ' . filesize($file));
+            ob_clean();
+            flush();
+            readfile($file);
+            unlink($file); 
+            exit;
+        }
+    }
+
     public function getAllAvatars()
     {
         $data['avatar'] = $this->Avatar_model->get_all();
@@ -119,7 +179,7 @@ class API extends CI_Controller {
             $avatar-> setAttribute("id", $getavatar['id']);
     }
         header('Content-type: text/xml; charset=utf-8');
-        echo $dom->saveXML();
+        $dom->saveXML();
     }
 
     public function makeAvatar()
