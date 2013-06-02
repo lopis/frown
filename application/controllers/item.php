@@ -21,8 +21,14 @@ class Item extends CI_Controller {
        {
         redirect('home/login', 'refresh');
        }
-        $data['items'] = $this->Item_model->get_all();
+        $data['items'] = $this->Item_model->get_all_by_type();
+        $data['items']['All'] = $this->Item_model->get_all();
+        $data['items']['NoType'] = $this->Item_model->get_all_by_no_type();
         $data['title'] = 'Items';
+        $data['types'] = $this->Item_model->fillCombo();
+        $data['types']['NoType'] = 'NoType';
+        $data['types']['All'] = 'All';
+        $data["types_select"] = $this->Item_model->get_all_types();
 
         $this->load->view('templates/header', $data);
         $this->load->view('item/index', $data);
@@ -51,6 +57,11 @@ class Item extends CI_Controller {
         redirect('home/login', 'refresh');
        }
         $data['item'] = $this->Item_model->get_by_id($id)->row();
+        $data['notype'] = "";
+        if($this->Item_model->get_type_by_item($id)!=null)
+            $data['type'] = $this->Item_model->get_type_by_item($id)->row();
+        else
+            $data['notype'] = "NoType";
         $data['title'] = 'Items';
         $this->load->view('templates/header', $data);
         $this->load->view('item/view',$data);
@@ -64,12 +75,9 @@ class Item extends CI_Controller {
         redirect('home/login', 'refresh');
        }
         $item = array('name' => $this->input->post('name'),
-                            'layer' => $this->input->post('layer'),
-                            'color' => $this->input->post('color'),
-                            'svg' => $this->input->post('svg'),
-                            'type' => $this->input->post('type'));
+                            'layer' => $this->input->post('layer'));
                     
-        $this->Item_model->edit($id,$item);
+        $this->Item_model->edit($id,$item,$this->input->post('type'));
         
         $this->load->helper('url');
         redirect('item/index');

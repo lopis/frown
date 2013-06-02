@@ -11,6 +11,7 @@ class User extends CI_Controller {
         $this->load->helper('url');
         /* ------------------ */ 
         $this->load->model('User_model');
+        $this->load->model('Avatar_model');
         $this->load->library('grocery_CRUD');
  
     }
@@ -51,6 +52,8 @@ class User extends CI_Controller {
        }
         $data['user'] = $this->User_model->get_by_id($id)->row();
         $data['title'] = 'Users';
+        $data['avatars'] = $this->Avatar_model->get_all();
+        $data['avatarusers'] = $this->Avatar_model->get_all_AvatarUsers();
         $this->load->view('templates/header', $data);
         $this->load->view('user/view',$data);
         $this->load->view('templates/footer');

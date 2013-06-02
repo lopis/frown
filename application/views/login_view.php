@@ -33,7 +33,7 @@
     <?php
       echo validation_errors();
       $attributes = array('class' => 'form-signin');
-      echo form_open('home/register', $attributes);
+      echo form_open('register', $attributes);
     ?>
     <input class="btn-primary" type="submit" value="Register"/>
     </form>

@@ -11,10 +11,31 @@ Class Avatar_model extends CI_Model
       return $query->result_array();
   }
 
+  public function get_all_AvatarUsers()
+  {
+      $query = $this->db->get('Avatar_User');
+      return $query->result_array();
+  }
+
+  public function get_latest()
+  {
+      $this ->db-> select('*');
+      $this ->db-> from($this->tbl_person);
+      $this ->db-> order_by('id', 'desc');
+      $this ->db-> limit(10);
+      $query = $this->db->get();
+      return $query->result_array();
+  }
+
   public function get_by_id($id)
   {
       $this->db->where('id', $id);
       return $this->db->get($this->tbl_person);
+  }
+
+  public function get_all_by_user()
+  {
+      
   }
 
   public function create($avatar, $id_user)

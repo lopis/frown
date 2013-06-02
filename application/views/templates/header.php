@@ -6,7 +6,6 @@
 		"Avatars" => base_url()."index.php/avatar/index",
 		"Items" => base_url()."index.php/item/index",
 		"Users" => base_url()."index.php/user/index",
-		"Types" => base_url()."index.php/type/index",
 		"Profile" => base_url()."index.php/user/view/".$session_data['id'],
 		"Logout" => base_url()."index.php/home/logout",
 	);
@@ -22,6 +21,9 @@
 </head>
 <body>
 <div class="container">
+<a href="<?php echo base_url();?>index.php/home/index">
+ <img src="<?php echo base_url();?>application/views/img/logo.png" width="200" height="150" />
+</a>
 <div class="navbar">
 	<ul class="nav">
 		<?php 

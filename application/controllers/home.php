@@ -6,6 +6,8 @@ class Home extends CI_Controller {
  {
    parent::__construct();
    $this->load->model('User_model');
+   $this->load->model('Avatar_model');
+   $this->load->model('Item_model');
  }
 
  function index()
@@ -14,6 +16,8 @@ class Home extends CI_Controller {
    {
      $session_data = $this->session->userdata('logged_in');
      $data['username'] = $session_data['username'];
+     $data['avatars'] = $this->Avatar_model->get_latest();
+     $data['items'] = $this->Item_model->get_latest();
      //$data['id'] = $session_data['id'];
      $this->load->view('templates/header');
      $this->load->view('home', $data);
@@ -69,7 +73,8 @@ class Home extends CI_Controller {
      {
        $sess_array = array(
          'id' => $row->id,
-         'username' => $row->username);
+         'username' => $row->username,
+         'admin' => $row->admin);
        $this->session->set_userdata('logged_in', $sess_array);
      }
      return TRUE;

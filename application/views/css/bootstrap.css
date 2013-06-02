@@ -6187,3 +6187,9 @@ form.form-signin{
   box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
   max-width: 300px;
 }
+
+ #showbackgroundimage{
+  background-image:url('../img/manequin.png');
+  background-size:128px 128px;
+  background-repeat:no-repeat;
+ }
