@@ -7,7 +7,7 @@
 		"Items" => base_url()."index.php/item/index",
 		"Users" => base_url()."index.php/user/index",
 		"Profile" => base_url()."index.php/user/view/".$session_data['id'],
-		"Logout" => base_url()."index.php/home/logout",
+		"Logout ( ".$session_data['username']." )" => base_url()."index.php/home/logout",
 	);
 
 ?>

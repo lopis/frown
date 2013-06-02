@@ -33,23 +33,42 @@ Class Avatar_model extends CI_Model
       return $this->db->get($this->tbl_person);
   }
 
-  public function get_all_by_user()
+  public function get_all_by_user($id)
   {
-      
+    $query=$this->db->query("SELECT Avatar.name, Avatar.id, Avatar.svg FROM Avatar WHERE Avatar.id IN (SELECT id_avatar FROM Avatar_User WHERE id_user=".$id.")"); 
+    return $query->result_array();
+  }
+
+  public function get_all_from_users()
+  {
+      $data = array();
+      $query = $this->db->get('User');
+       foreach ($query->result_array() as $row)
+        {
+          $user=$row['id'];
+          $this ->db-> select('Avatar.id, Avatar.name, Avatar.svg');
+          $this ->db-> from('Avatar');
+          //$this ->db->where('Item.id','Item_Type.id_item');
+          //$this ->db->where('Item_Type.id_type', $type);
+          $this->db->join('Avatar_User', 'Avatar.id = Avatar_User.id_avatar and Avatar_User.id_user='.$user);
+          $query1 = $this->db->get();
+          $data[$row['username']] = $query1->result_array(); 
+        }
+        return $data;
   }
 
   public function create($avatar, $id_user)
   {
 
    $this->db->insert($this->tbl_person, $avatar);
- /*  $id_avatar= $this->db->insert_id();
+   $id_avatar= $this->db->insert_id();
    
    $avataruser = array('id_avatar' => $id_avatar,
                             'id_user' => $id_user);
 
    $this->db->insert('Avatar_User',$avataruser);
 
-   $avataritem = array('id_avatar' => $id_avatar,
+   /*$avataritem = array('id_avatar' => $id_avatar,
                             'id_item' => 1);
 
    $this->db->insert('Avatar_Item',$avataritem);

@@ -12,9 +12,9 @@
 <label for="layer">Layer:</label>
 <input type="number" required=true id="layer" name="layer"/>
 <br/>
-<label for="color">Color:</label>
+<!--<label for="color">Color:</label>
 <input type="text" id="color" name="color"/>
-<br/>
+<br/>-->
 
 <br /><br />
 

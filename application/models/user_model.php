@@ -25,6 +25,20 @@ Class User_model extends CI_Model
    }
  }
 
+  public function fillCombo()
+ {
+  $query = $this->db->query('select * from User');
+  $dropdowns = $query->result();
+            foreach($dropdowns as $dropdown)
+            {
+             $dropDownList[$dropdown->username] = $dropdown->username;
+             }
+   //$dropDownOptions = array('' => 'SELECT', '0' => 'None');
+            //$finalDropDown = $dropDownOptions + $dropDownList;
+    $finalDropDown = $dropDownList;
+             return $finalDropDown;
+ } 
+
   public function get_all()
   {
       $query = $this->db->get($this->tbl_person);

@@ -1,5 +1,5 @@
 <br/>
-<?php echo 	form_dropdown('name', $types, 'All', 'id="mydropdown"');?>
+<?php echo 	"<p><font size='5'>Type: ".form_dropdown('name', $types, 'All', 'id="mydropdown"')."</font></p>";?>
 <?php foreach ($items as $key=>$cat): ?>
 
 <div <?php echo 'id="'.$key.'" style="display: none"'; ?>>
