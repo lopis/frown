@@ -21,17 +21,18 @@
 </head>
 <body>
 <div class="container">
-<div id="logo">
-	<a href="<?php echo base_url();?>index.php/home/index">
-		<img class="logo" src="<?php echo base_url();?>application/views/img/logo.png"/>
-	</a>
-</div>
-<div class="navbar">
-	<ul class="nav">
-		<?php 
-			foreach ($header_menu as $key => $value) {
-				echo "<li>".anchor($value, $key)."</li>";
-			}
-	 	?>
-	</ul>
-</div>
+	<div id="logo">
+		<a href="<?php echo base_url();?>index.php/home/index">
+			<img class="logo" src="<?php echo base_url();?>application/views/img/logo.png"/>
+		</a>
+	</div>
+	<div class="navbar">
+		<ul class="nav">
+			<?php 
+				foreach ($header_menu as $key => $value) {
+					echo "<li>".anchor($value, $key)."</li>";
+				}
+		 	?>
+		</ul>
+	</div>
+	<div id="main">

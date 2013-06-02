@@ -6201,6 +6201,7 @@ form.form-signin{
   background-color: #EEE;
   margin: 5px auto 0 auto;
   border-radius: 5px;
+  padding: 10px;
  }
 
  div#logo {
@@ -6212,4 +6213,10 @@ form.form-signin{
 
  img.logo {
   width: 100%;
+ }
+
+ .navbar {
+  margin-right: auto;
+  margin-left: auto;
+  background-color: red;
  }

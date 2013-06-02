@@ -42,6 +42,9 @@
     					$i = 0;
     				}
     			}
+                if($i != 0){
+                    echo "</div></li>";
+                }
     		 ?>
     	</ul>
     </div>
@@ -57,9 +60,9 @@
 <script type="text/javascript">
 	$(window).load(function(){
 		MarginSlider.init({slider: $('.marginslider'), 
-                   no_visible: 1,
-                   step: 1
-                  });
+           no_visible: 1,
+           step: 1
+          });
 	});
 	base_url = "<?php echo base_url(); ?>";
 </script>
