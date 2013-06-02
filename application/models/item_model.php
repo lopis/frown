@@ -47,8 +47,7 @@ Class Item_model extends CI_Model
       $this ->db->where_not_in('id', $items);
       $query = $this->db->get($this->tbl_person);
       return $query->result_array();*/
-    $this->db->query("SELECT * FROM Item, Item_Type WHERE Item.id NOT IN (SELECT id FROM Item_Type)"); 
-    $query = $this->db->get($this->tbl_person);
+    $query= $this->db->query("SELECT * FROM Item, Item_Type WHERE Item.id NOT IN (SELECT id_item FROM Item_Type)"); 
     return $query->result_array();
   }
 

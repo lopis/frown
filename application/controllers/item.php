@@ -63,6 +63,10 @@ class Item extends CI_Controller {
         else
             $data['notype'] = "NoType";
         $data['title'] = 'Items';
+        $xml = new SimpleXMLElement($data['item']->svg);
+        $xml['width'] = '256px';
+        $xml['height']='256px';
+        $data['item']->svg=$xml->asXML();
         $this->load->view('templates/header', $data);
         $this->load->view('item/view',$data);
         $this->load->view('templates/footer');
@@ -93,6 +97,7 @@ class Item extends CI_Controller {
         $data['title'] = 'Items';
         $data['id']=$id;
         $data['item'] = $this->Item_model->get_by_id($id)->row();
+        $data['type'] = $this->Item_model->get_type_by_item($id)->row();
         $this->load->view('templates/header', $data);
         $this->load->view('item/update', $data);
         $this->load->view('templates/footer');

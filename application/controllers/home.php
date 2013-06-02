@@ -17,6 +17,7 @@ class Home extends CI_Controller {
      $session_data = $this->session->userdata('logged_in');
      $data['username'] = $session_data['username'];
      $data['avatars'] = $this->Avatar_model->get_latest();
+     $data['myavatars'] = $this->Avatar_model->get_all_by_user($session_data['id']);
      $data['items'] = $this->Item_model->get_latest();
      //$data['id'] = $session_data['id'];
      $this->load->view('templates/header');

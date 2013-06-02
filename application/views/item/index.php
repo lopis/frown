@@ -1,8 +1,5 @@
-
 <?php
-    echo form_dropdown('name', $types, 'All', 'id="catList"');
-    echo "<div class='left-arrow'>Previous</div>";
-    echo "<div class='right-arrow'>Next</div>";
+    echo "<div class='type'>Type: ".form_dropdown('name', $types, 'All', 'id="catList"')."</div>";
     foreach ($items as $cat => $itemlist) {
         $i=0;
         echo "<div class='cat marginslider_container' id='".$cat."'>";
@@ -23,7 +20,10 @@
         if($i != 0){
             echo "</div></li>";
         }
-        echo "</ul></div>";
+        echo '</ul>
+            <div class="left-arrow btn btn-large"><i class="icon-chevron-left"> </i></div>
+            <div class="right-arrow btn btn-large"><i class="icon-chevron-right"> </i></div>
+        </div>';
     }
  ?>
 <p/>

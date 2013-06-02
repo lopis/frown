@@ -8,6 +8,13 @@
 
 
     <table>
+    <tr><td><h3>My Avatars</h3></td></tr>
+    <tr><?php foreach ($myavatars as $user_item): ?><?php echo '<td >'.$user_item['svg'].'</td>' ?><?php endforeach ?></tr>
+    <tr><?php foreach ($myavatars as $user_item): ?><?php echo '<td align="center"><a href='.base_url().'index.php/avatar/view/'.$user_item['id'].'>'.$user_item['name'].'</a></td>'?>
+    <?php endforeach ?></tr>
+    </table>
+
+    <table>
     <tr><td><h3>Latest Items</h3></td></tr>
     <tr><?php foreach ($items as $user_item): ?><?php echo '<td id="showbackgroundimage">'.$user_item['svg'].'</td>' ?><?php endforeach ?></tr>
     <tr><?php foreach ($items as $user_item): ?><?php echo '<td align="center"><a href='.base_url().'index.php/item/view/'.$user_item['id'].'>'.$user_item['name'].'</a></td>'?><?php endforeach ?></tr>
@@ -15,7 +22,7 @@
 
     <table>
     <tr><td><h3>Latest Avatars</h3></td></tr>
-    <tr><?php foreach ($avatars as $user_item): ?><?php echo '<td id="showbackgroundimage">'.$user_item['svg'].'</td>' ?><?php endforeach ?></tr>
+    <tr><?php foreach ($avatars as $user_item): ?><?php echo '<td >'.$user_item['svg'].'</td>' ?><?php endforeach ?></tr>
     <tr><?php foreach ($avatars as $user_item): ?><?php echo '<td align="center"><a href='.base_url().'index.php/avatar/view/'.$user_item['id'].'>'.$user_item['name'].'</a></td>'?>
     <?php endforeach ?></tr>
     </table>

@@ -12,6 +12,7 @@ class Avatar extends CI_Controller {
         /* ------------------ */ 
         $this->load->model('Avatar_model');
         $this->load->model('Item_model');
+        $this->load->model('User_model');
         $this->load->library('grocery_CRUD');
  
     }
@@ -22,7 +23,11 @@ class Avatar extends CI_Controller {
        {
         redirect('home/login', 'refresh');
        }
-        $data['avatars'] = $this->Avatar_model->get_all();
+        $session_data = $this->session->userdata('logged_in');
+        $data['users'] = $this->User_model->fillCombo();
+        $data['users']['All'] = 'All';
+        $data['avatars'] = $this->Avatar_model->get_all_from_users();
+        $data['avatars']['All'] = $this->Avatar_model->get_all();
         $data['title'] = 'Avatars';
 
         $this->load->view('templates/header', $data);
@@ -52,6 +57,10 @@ class Avatar extends CI_Controller {
        }
         $data['avatar'] = $this->Avatar_model->get_by_id($id)->row();
         $data['title'] = 'Avatars';
+        $xml = new SimpleXMLElement($data['avatar']->svg);
+        $xml['width'] = '256px';
+        $xml['height']='256px';
+        $data['avatar']->svg=$xml->asXML();
         $this->load->view('templates/header', $data);
         $this->load->view('avatar/view',$data);
         $this->load->view('templates/footer');

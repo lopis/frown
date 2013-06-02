@@ -6193,6 +6193,12 @@ form.form-signin{
   background-repeat:no-repeat;
  }
 
+ #showbackgroundimagemax{
+  background-image:url('../img/manequin.png');
+  background-size:256px 256px;
+  background-repeat:no-repeat;
+ }
+
  body {
   background-color: #112233;
  }
