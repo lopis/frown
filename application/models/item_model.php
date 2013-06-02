@@ -37,8 +37,8 @@ Class Item_model extends CI_Model
 
   public function get_all_by_no_type()
   {
-      $this ->db-> select('id_item');
-      $query = $this->db->get('item_Type');
+/*      $this ->db-> select('id_item');
+      $query = $this->db->get('Item_Type');
       $items=array();
       foreach ($query->result_array() as $row)
         {
@@ -46,7 +46,10 @@ Class Item_model extends CI_Model
         }
       $this ->db->where_not_in('id', $items);
       $query = $this->db->get($this->tbl_person);
-      return $query->result_array();
+      return $query->result_array();*/
+    $this->db->query("SELECT * FROM Item, Item_Type WHERE Item.id NOT IN (SELECT id FROM Item_Type)"); 
+    $query = $this->db->get($this->tbl_person);
+    return $query->result_array();
   }
 
   public function get_latest()

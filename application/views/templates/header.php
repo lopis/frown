@@ -21,9 +21,11 @@
 </head>
 <body>
 <div class="container">
-<a href="<?php echo base_url();?>index.php/home/index">
- <img src="<?php echo base_url();?>application/views/img/logo.png" width="200" height="150" />
-</a>
+<div id="logo">
+	<a href="<?php echo base_url();?>index.php/home/index">
+		<img class="logo" src="<?php echo base_url();?>application/views/img/logo.png"/>
+	</a>
+</div>
 <div class="navbar">
 	<ul class="nav">
 		<?php 

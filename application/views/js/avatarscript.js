@@ -7,7 +7,11 @@ var avatar = {};
 
 
 function addToAvatar(item, layer){
-	avatar[layer] = item;
+	if(layer in avatar && avatar[layer] == item){
+		delete avatar[layer];
+	} else {
+		avatar[layer] = item;
+	}
 	keys = Object.keys(avatar);
 	keys.sort();
 

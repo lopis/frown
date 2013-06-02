@@ -32,7 +32,8 @@
     				if($i == 0){
     					echo "<li><div class='grid-item'>";
     				}
-    				echo "<div class='slider-item' id='" . $item['id'] . "' layer='" . $item['layer'] . "'>";
+    				echo "<div class='slider-item' id='" . $item['id']
+                     . "' layer='" . $item['layer'] . "'>";
     				echo $item['svg'];
     				echo "</div>";
     				$i = $i + 1;
