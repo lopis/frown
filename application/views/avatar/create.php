@@ -10,43 +10,48 @@
     <p>
         <?php echo form_submit('submit', 'Submit'); ?>
     </p>
+    <div id="avatar-creator">
+        <div id="layer-float">
+            <div id="layer-stack">
+            </div>
+        </div>
 
-    <div id="avatar">
-    	<svg/>
-    </div>
-
-    <div class="left-arrow">Previous</div>
-    <div class="right-arrow">Next</div>
-    <div class="marginslider_container">
-    	<ul class="marginslider">
-    		<!-- <li>
-    			<div class='grid-item'>
-    				<div class='slider-item'>
-    					<svg ... />
-    				</div>
-    			</div>
-    		</li> -->
-    		<?php 
-    			$i=0;
-    			foreach ($items as $item) {
-    				if($i == 0){
-    					echo "<li><div class='grid-item'>";
-    				}
-    				echo "<div class='slider-item' id='" . $item['id']
-                     . "' layer='" . $item['layer'] . "'>";
-    				echo $item['svg'];
-    				echo "</div>";
-    				$i = $i + 1;
-    				if($i == 9){
-    					echo "</div></li>";
-    					$i = 0;
-    				}
-    			}
-                if($i != 0){
-                    echo "</div></li>";
-                }
-    		 ?>
-    	</ul>
+        <div id="avatar">
+        	<svg/>
+        </div>
+        <div class="marginslider_container">
+        	<ul class="marginslider">
+        		<!-- <li>
+        			<div class='grid-item'>
+        				<div class='slider-item'>
+        					<svg ... />
+        				</div>
+        			</div>
+        		</li> -->
+        		<?php 
+        			$i=0;
+        			foreach ($items as $item) {
+        				if($i == 0){
+        					echo "<li><div class='grid-item'>";
+        				}
+        				echo "<div class='slider-item' id='" . $item['id']
+                         . "' layer='" . $item['layer'] . "'>";
+        				echo $item['svg'];
+        				echo "</div>";
+        				$i = $i + 1;
+        				if($i == 9){
+        					echo "</div></li>";
+        					$i = 0;
+        				}
+        			}
+                    if($i != 0){
+                        echo "</div></li>";
+                    }
+        		 ?>
+        	</ul>
+            <div class="left-arrow btn btn-large"><i class="icon-chevron-left"> </i></div>
+            <div class="right-arrow btn btn-large"><i class="icon-chevron-right"> </i></div>
+        </div>
     </div>
 
  

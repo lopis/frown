@@ -26,7 +26,10 @@
 
 .left-arrow, .right-arrow {
 	cursor: pointer;
-	display: none;
+	position: relative;
+	line-height: 25px;
+	width: 45%;
+	float: left;
 }
 
 
@@ -62,3 +65,21 @@ svg{
 	height: 200px;
 	float: left;
 }
+
+#layer-stack{
+	float: left;
+}
+
+#layer-stack {
+	width: 100px;
+	height: 200px;
+	background-color: white;
+	overflow: auto;
+	display: table-cell;
+	vertical-align: bottom;
+}
+	#layer-stack .layer {
+		padding: 2px;
+		margin: 1px;
+		background-color: #9AB;
+	}

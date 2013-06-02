@@ -15,9 +15,11 @@ function addToAvatar(item, layer){
 	keys = Object.keys(avatar);
 	keys.sort();
 
+	$("#layer-stack").empty();
 	url = base_url + "index.php/api/makeavatar?";
 	for (i = 0; i < keys.length; ++i) {
 		url += "item" + (i+1) + "=" + avatar[keys[i]] + "&";
+		$("#layer-stack").prepend("<div class='layer'>[" + i + "] " + $("div#"+avatar[keys[i]]+" svg").attr('id') + "</div>");
 	}
 	$.get(url,
 		function(xml) {
