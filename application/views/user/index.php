@@ -1,8 +1,7 @@
-<br/>
-<?php foreach ($users as $user_item): ?>
 
-    <h2><a href="view/<?php echo $user_item['id'] ?>"><?php echo $user_item['username'] ?></a></h2>
+<?php foreach ($users as $user_item): ?>
     <div id="main">
+    <h3><a href="view/<?php echo $user_item['id'] ?>"><?php echo $user_item['username'] ?></a></h3>
         <p><?php echo "Email: ".$user_item['email']; ?></p>
         <p><?php 
         if($user_item['admin']==1)

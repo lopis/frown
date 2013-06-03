@@ -67,7 +67,7 @@ Class Item_model extends CI_Model
       $this ->db-> select('*');
       $this ->db-> from($this->tbl_person);
       $this ->db-> order_by('id', 'desc');
-      $this ->db-> limit(10);
+      $this ->db-> limit(7);
       $query = $this->db->get();
       return $query->result_array();
   }

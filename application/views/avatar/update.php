@@ -1,6 +1,6 @@
 <?php
   $this->load->helper('form');
-  echo form_open('avatar/add');
+  echo form_open('avatar/edit/'.$avatar->id);
 ?>
 <input id="svg" type="hidden" name="svg" value="..." />
 <input id="items" type="hidden" name="items" value="" />
@@ -8,13 +8,6 @@
      <label for="name">Name:</label>
      <input required=true type="text" size="20" id="name" name="name" value="<?php echo $avatar->name; ?>"/>
 <?php $this->load->helper('form'); ?>
-
-<?php echo form_open('avatar/add'); ?>
-<input id="svg" type="hidden" name="svg" value="..." />
-  <br/>
-     <label for="name">Name:</label>
-     <input required=true type="text" size="20" id="name" name="name" value="<?php echo $avatar->name; ?>"/>
-     <br/>
  
     <p>
         <?php echo form_submit('submit', 'Submit'); ?>
@@ -71,10 +64,10 @@
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
 <link rel="stylesheet" type="text/css"
   href="<?php echo base_url();?>application/views/templates/margin-slider/css/marginslider.css">
-<<<<<<< HEAD
+
 <script src="<?php echo base_url();?>application/views/js/avatarscript.js"></script>
-=======
->>>>>>> 68bff5fc01b402b2bb12791767466a98fbcd7faa
+
+
 <script type="text/javascript">
   $(window).load(function(){
     MarginSlider.init({slider: $('.marginslider'), 
@@ -83,10 +76,7 @@
           });
   });
   base_url = "<?php echo base_url(); ?>";
-<<<<<<< HEAD
+
   addListToAvatar(<?php echo json_encode($avatar_items); ?>);
 </script>
-=======
-</script>
-<script src="<?php echo base_url();?>application/views/js/avatarscript.js"></script>
->>>>>>> 68bff5fc01b402b2bb12791767466a98fbcd7faa
+

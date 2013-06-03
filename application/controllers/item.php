@@ -97,7 +97,10 @@ class Item extends CI_Controller {
         $data['title'] = 'Items';
         $data['id']=$id;
         $data['item'] = $this->Item_model->get_by_id($id)->row();
-        $data['type'] = $this->Item_model->get_type_by_item($id)->row();
+        if($this->Item_model->get_type_by_item($id))
+            $data['type'] = $this->Item_model->get_type_by_item($id)->row();
+        else
+            $data['type'] = null;
         $this->load->view('templates/header', $data);
         $this->load->view('item/update', $data);
         $this->load->view('templates/footer');

@@ -16,9 +16,7 @@ Class Avatar_model extends CI_Model
       $this ->db-> select('Avatar.id, Avatar.name, Avatar.svg');
       $this ->db-> from('Avatar');
       $query = $this->db->get();
-      $data=array();
-      $data['All'] = $query->result_array();
-      return $data;
+      return $query->result_array();
   }
 
   public function get_all_AvatarUsers()
@@ -32,7 +30,7 @@ Class Avatar_model extends CI_Model
       $this ->db-> select('*');
       $this ->db-> from($this->tbl_person);
       $this ->db-> order_by('id', 'desc');
-      $this ->db-> limit(10);
+      $this ->db-> limit(7);
       $query = $this->db->get();
       return $query->result_array();
   }
@@ -48,7 +46,7 @@ Class Avatar_model extends CI_Model
 
   public function get_all_by_user($id)
   {
-    $query=$this->db->query("SELECT Avatar.name, Avatar.id, Avatar.svg FROM Avatar WHERE Avatar.id IN (SELECT id_avatar FROM Avatar_User WHERE id_user=".$id.")"); 
+    $query=$this->db->query("SELECT Avatar.name, Avatar.id, Avatar.svg FROM Avatar WHERE Avatar.id IN (SELECT id_avatar FROM Avatar_User WHERE id_user=".$id.") LIMIT 7;"); 
     return $query->result_array();
   }
 
@@ -94,9 +92,9 @@ Class Avatar_model extends CI_Model
 
   public function edit($id, $avatar, $items)
   {
- /*     $this->db->where('id', $id);
+      $this->db->where('id', $id);
       $this->db->update($this->tbl_person, $avatar);
-      foreach ($items as $item) {
+      /*foreach ($items as $item) {
         if ($item != '') {
           $avataritem = array(
           'id_avatar' => $id_avatar,
