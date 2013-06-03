@@ -1,37 +1,17 @@
-<br/>
-<?php echo 	"<p><font size='5'>User: ".form_dropdown('username', $users, 'All', 'id="mydropdown"')."</font></p>";?>
-<?php foreach ($avatars as $key=>$cat): ?>
+<p><a href="create">Create New</a></p>
 
-<div <?php echo 'id="'.$key.'" style="display: none"'; ?>>
-    <table>
-    <tr><?php foreach ($cat as $user_item): ?><?php echo '<td align="center"><h3><a href='.base_url().'index.php/avatar/view/'.$user_item['id'].'>'.$user_item['name'].'</a></h3></td>' ?><?php endforeach ?></tr>
-    <tr><?php foreach ($cat as $user_item): ?><?php echo '<td >'.$user_item['svg'].'</td>'?><?php endforeach ?></tr>
-    <?php 
-		$session_data = $this->session->userdata('logged_in');
-    	if($session_data['admin']==1 || $session_data['username']==$key){ ?>
-    <tr><?php foreach ($cat as $user_item): ?><?php echo '<td align="center"><a href="'.base_url().'index.php/avatar/update/'.$user_item['id'].'">edit 	</a>|<a href="'.base_url().'index.php/avatar/delete/'.$user_item['id'].'"> 	delete</a></td>'?><?php endforeach ?></tr>
-    <?php }?>
-    </table>
-</div>
-<?php endforeach ?>
-<p/>
-<br/>
-
-
-<!--<?php foreach ($avatars as $user_item): ?>
-
-    <h2><a href="view/<?php echo $user_item['id'] ?>"><?php echo $user_item['name'] ?></a></h2>
-    <div id="main">
-        <?php echo $user_item['svg'] ?>
+<div class="label">User Avatars</div>
+<div class="home_avatars" id="myavatars">
+  <?php foreach ($avatars['All'] as $avatar): ?>
+    <div class="home_avatar">
+      <a href="<?php echo base_url().'index.php/avatar/view/'.$avatar['id']; ?>">
+        <div id="my_svg"><?php echo $avatar['svg']; ?></div>
+        <div id="my_name"><?php echo $avatar['name']; ?></div>
+      </a>
     </div>
-    <a href="update/<?php echo $user_item['id'] ?>">edit</a> |
-
-    <a href="delete/<?php echo $user_item['id'] ?>">delete</a>
-
-<?php endforeach ?>-->
-<br/>
-<p><a href="create">create</a></p>
-
+  <?php endforeach ?>
+  <div style="clear: both"></div>
+</div>
 
 <script src="<?php echo base_url();?>application/javascript/jquery-1.9.1.min.js"></script>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />

@@ -39,8 +39,11 @@ Class Avatar_model extends CI_Model
 
   public function get_by_id($id)
   {
-      $this->db->where('id', $id);
-      return $this->db->get($this->tbl_person);
+    $this->db->select('Avatar.id, Avatar.name, Avatar.svg, User.id as id_user, User.username');
+    $this->db->from('User, Avatar');
+    $this->db->where('Avatar.id', $id);
+    $this->db->join('Avatar_User', 'id_user = Avatar_User.id_user and Avatar_User.id_avatar='.$id);
+    return $this->db->get();
   }
 
   public function get_all_by_user($id)

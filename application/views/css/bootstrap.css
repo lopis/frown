@@ -4364,7 +4364,7 @@ input[type="submit"].btn.btn-mini {
 .navbar {
   *position: relative;
   *z-index: 2;
-  margin-bottom: 20px;
+  margin-bottom: 0px;
   overflow: visible;
 }
 
@@ -6222,12 +6222,54 @@ form.form-signin{
  }
 
  #main{
-  margin-top: 50px;
  }
 
  .nav {
  }
 
- .homeavatars{
-  float left;
+ .label {
+  width: 500px;
+  margin: auto;
+  text-align: center;
+  display: block;
+ }
+
+ .home_avatars{
+  width: 500px;
+  min-height: 155px;
+  margin: auto;
+  text-align: center;
+ }
+
+ .home_avatar {
+  margin: 5px auto 5px auto;
+  display: block;
+  float: left;
+ }
+
+  #my_name {
+    width: 100px;
+    height: 15px;
+    overflow: hidden;
+  }
+
+ .home_avatar svg {
+    width: 100px;
+ }
+
+ #rate{
+  width: 250px;
+  text-align: center;
+  display: block;
+ }
+
+ .views {
+  text-align: center;
+  width: 100%;
+ }
+
+ .view{
+  float: left;
+  margin: auto;
+  display: block;
  }

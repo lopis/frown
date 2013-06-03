@@ -3,41 +3,44 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
  <body>
    <br/>
-   <h2>Welcome <?php echo $username; ?>!</h2>
+   <h4>Welcome <?php echo $username; ?>!</h4>
    <!--<?php echo $error;?>-->
-   <div class="homeavatars" id="myavatars">
-    <?php foreach ($myavatars as $user_item): ?>
-        <a href="<?php echo base_url().'index.php/avatar/view/'.$user_item['id']; ?>">
-            <div class="svg"><?php echo $user_item['svg']; ?></div>
-            <div class="name"><?php echo $user_item['name']; ?></div>
+   <div class="label">My Avatars</div>
+   <div class="home_avatars" id="myavatars">
+      <?php foreach ($myavatars as $user_item): ?>
+        <div class="home_avatar">
+          <a href="<?php echo base_url().'index.php/avatar/view/'.$user_item['id']; ?>">
+            <div id="my_svg"><?php echo $user_item['svg']; ?></div>
+            <div id="my_name"><?php echo $user_item['name']; ?></div>
+          </a>
+        </div>
+      <?php endforeach ?>
+      <div style="clear: both"></div>
+   </div>
+   <div class="label">Newest Items</div>
+   <div class="home_avatars" id="lastitems">
+      <?php foreach ($items as $user_item): ?>
+      <div class="home_avatar">
+        <a href="<?php echo base_url().'index.php/item/view/'.$user_item['id']; ?>">
+          <div id="my_svg"><?php echo $user_item['svg']; ?></div>
+          <div id="my_name"><?php echo $user_item['name']; ?></div>
         </a>
+      </div>
     <?php endforeach ?>
+    <div style="clear: both"></div>
    </div>
-   <div class="homeavatars" id="lastitems">
+   <div class="label">Recent Creations</div>
+   <div class="home_avatars" id="lastavatars">
+      <?php foreach ($avatars as $user_item): ?>
+      <div class="home_avatar">
+        <a href="<?php echo base_url().'index.php/item/view/'.$user_item['id']; ?>">
+          <div id="my_svg"><?php echo $user_item['svg']; ?></div>
+          <div id="my_name"><?php echo $user_item['name']; ?></div>
+        </a>
+      </div>
+    <?php endforeach ?>
+    <div style="clear: both">.</div>
    </div>
-   <div class="homeavatars" id="lastavatars">
-   </div>
-
-    <table>
-    <tr><td><h3>My Avatars</h3></td></tr>
-    <tr><?php foreach ($myavatars as $user_item): ?><?php echo '<td >'.$user_item['svg'].'</td>' ?><?php endforeach ?></tr>
-    <tr><?php foreach ($myavatars as $user_item): ?><?php echo '<td align="center"><a href='.base_url().'index.php/avatar/view/'.$user_item['id'].'>'.$user_item['name'].'</a></td>'?>
-    <?php endforeach ?></tr>
-    </table>
-
-    <table>
-    <tr><td><h3>Latest Items</h3></td></tr>
-    <tr><?php foreach ($items as $user_item): ?><?php echo '<td >'.$user_item['svg'].'</td>' ?><?php endforeach ?></tr>
-    <tr><?php foreach ($items as $user_item): ?><?php echo '<td align="center"><a href='.base_url().'index.php/item/view/'.$user_item['id'].'>'.$user_item['name'].'</a></td>'?><?php endforeach ?></tr>
-    </table>
-
-    <table>
-    <tr><td><h3>Latest Avatars</h3></td></tr>
-    <tr><?php foreach ($avatars as $user_item): ?><?php echo '<td >'.$user_item['svg'].'</td>' ?><?php endforeach ?></tr>
-    <tr><?php foreach ($avatars as $user_item): ?><?php echo '<td align="center"><a href='.base_url().'index.php/avatar/view/'.$user_item['id'].'>'.$user_item['name'].'</a></td>'?>
-    <?php endforeach ?></tr>
-    </table>
-
     <br/>
     <br/>
     <br/>

@@ -112,7 +112,7 @@ class API extends CI_Controller {
         $xml = new SimpleXMLElement($data['avatar']->svg);
 
         header('Content-type: text/xml; charset=utf-8');
-        $file = 'uploads/'.$data['avatar']->name.'.svg';
+        $file = 'uploads/'.str_replace(" ", "_", $data['avatar']->name).'.svg';
         $fh = fopen($file, 'w') or die("can't open file");
 
         $stringData=$xml->asXml();
