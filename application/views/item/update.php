@@ -10,7 +10,8 @@
      <input value=<?php echo $item->layer; ?> required=true type="number" size="20" id="layer" name="layer"/>
      <br/>
      <label for="type">Type:</label>
-     <input type="text" value=<?php echo $type->name; ?> required=true size="20" id="type" name="type"/>
+     <input type="text" value=<?php if($type!=null) echo $type->name; 
+     else echo 'NoType'; ?> required=true size="20" id="type" name="type"/>
      <br/>
     <p>
         <?php echo form_submit('submit', 'Submit'); ?>

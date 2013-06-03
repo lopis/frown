@@ -27,9 +27,8 @@ class Avatar extends CI_Controller {
         $data['users'] = $this->User_model->fillCombo();
         $data['users']['All'] = 'All';
         $data['avatars'] = $this->Avatar_model->get_all_from_users();
-        $data['avatars'] = $this->Avatar_model->get_all_box();
+        $data['avatars']['All'] = $this->Avatar_model->get_all_box();
         $data['title'] = 'Avatars';
-
         $this->load->view('templates/header', $data);
         $this->load->view('avatar/index', $data);
         $this->load->view('templates/footer');
@@ -72,7 +71,7 @@ class Avatar extends CI_Controller {
        {
         redirect('home/login', 'refresh');
        }
-        $items = explode(',', $this->input->post('items'));
+        //$items = explode(',', $this->input->post('items'));
         $avatar = array(
             'name' => $this->input->post('name'),
             'svg' => $this->input->post('svg'));
@@ -94,10 +93,9 @@ class Avatar extends CI_Controller {
         $data['id']=$id;
         $data['avatar'] = $this->Avatar_model->get_by_id($id)->row();
         $data['items'] = $this->Item_model->get_all();
-<<<<<<< HEAD
+
         $data['avatar_items'] = $this->Item_model->get_avatar_items($id);
-=======
->>>>>>> 68bff5fc01b402b2bb12791767466a98fbcd7faa
+
         $this->load->view('templates/header', $data);
         $this->load->view('avatar/update', $data);
         $this->load->view('templates/footer');

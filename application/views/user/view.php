@@ -37,7 +37,7 @@
 		<?php 
 		$session_data = $this->session->userdata('logged_in');
     	if($session_data['admin']==1 || $session_data['id']==$user->id){ ?>
-    <a href="update/<?php echo $user->id ?>">edit</a>
+    <a href="../update/<?php echo $user->id ?>">edit</a>
 
     <?php } ?>
 

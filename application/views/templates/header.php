@@ -9,6 +9,18 @@
 		"Profile" => base_url()."index.php/user/view/".$session_data['id'],
 		"Logout ( ".$session_data['username']." )" => base_url()."index.php/home/logout",
 	);
+	if ($session_data['admin']==1)
+	{
+		$header_menu = array(
+		//"Utilizador" => base_url()."index.php/utilizador/index",
+		"Avatars" => base_url()."index.php/avatar/index",
+		"Items" => base_url()."index.php/item/index",
+		"Types" => base_url()."index.php/type/index",
+		"Users" => base_url()."index.php/user/index",
+		"Profile" => base_url()."index.php/user/view/".$session_data['id'],
+		"Logout ( ".$session_data['username']." )" => base_url()."index.php/home/logout",
+	);
+	}
 
 ?>
 <!DOCTYPE html>

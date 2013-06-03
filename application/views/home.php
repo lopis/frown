@@ -5,7 +5,7 @@
    <br/>
    <h2>Welcome <?php echo $username; ?>!</h2>
    <!--<?php echo $error;?>-->
-   <div class="homeavatars" id="myavatars">
+   <!--<div class="homeavatars" id="myavatars">
     <?php foreach ($myavatars as $user_item): ?>
         <a href="<?php echo base_url().'index.php/avatar/view/'.$user_item['id']; ?>">
             <div class="svg"><?php echo $user_item['svg']; ?></div>
@@ -16,7 +16,7 @@
    <div class="homeavatars" id="lastitems">
    </div>
    <div class="homeavatars" id="lastavatars">
-   </div>
+   </div>-->
 
     <table>
     <tr><td><h3>My Avatars</h3></td></tr>

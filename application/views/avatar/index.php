@@ -2,7 +2,7 @@
 <?php echo 	"<p><font size='5'>User: ".form_dropdown('username', $users, 'All', 'id="mydropdown"')."</font></p>";?>
 <?php foreach ($avatars as $key=>$cat): ?>
 
-<div <?php echo 'id="'.$key.'" style="display: none"'; ?>>
+<div <?php echo 'id="'.$key.'" style="height:0;width:0;overflow:hidden;"'; ?>>
     <table>
     <tr><?php foreach ($cat as $user_item): ?><?php echo '<td align="center"><h3><a href='.base_url().'index.php/avatar/view/'.$user_item['id'].'>'.$user_item['name'].'</a></h3></td>' ?><?php endforeach ?></tr>
     <tr><?php foreach ($cat as $user_item): ?><?php echo '<td >'.$user_item['svg'].'</td>'?><?php endforeach ?></tr>
@@ -37,15 +37,21 @@
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
 <script type="text/javascript">
  $(document).ready(function () {
-            document.getElementById('All').style.display='block';
+            document.getElementById('All').style.overflow='visible'; 
+            document.getElementById('All').style.width='auto'; 
+            document.getElementById('All').style.height='auto'; 
             $("#mydropdown").bind("change",function(){
 			    var crit = document.getElementById("mydropdown");
 			    for (var i = 0; i < crit.options.length; i++) { 
 		             var criteriaprev = crit.options[i].value;
-		             document.getElementById(criteriaprev).style.display='none'; 
+		             document.getElementById(criteriaprev).style.overflow='hidden'; 
+                     document.getElementById(criteriaprev).style.width=0; 
+                     document.getElementById(criteriaprev).style.height=0; 
 		        } 
  				var criteria = crit.options[crit.selectedIndex].value;
-			    document.getElementById(criteria).style.display='block'; 
+		         document.getElementById(criteria).style.overflow='visible'; 
+                 document.getElementById(criteria).style.width='auto'; 
+                 document.getElementById(criteria).style.height='auto';   
 			});
         });
 </script>
