@@ -1,3 +1,7 @@
+<!-- by João Lopes & Ricardo Pinho -->
+<!-- FEUP 2013 - LAPD -->
+<!-- http://paginas.fe.up.pt/~ei10009 -->
+
 <p><a href="create">Create New</a></p>
 
 <div class="label">User Avatars</div>

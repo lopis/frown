@@ -1,3 +1,7 @@
+<!-- by João Lopes & Ricardo Pinho -->
+<!-- FEUP 2013 - LAPD -->
+<!-- http://paginas.fe.up.pt/~ei10009 -->
+
 <br/>
 <div class="views">
 	<div class="view" id="avatar">

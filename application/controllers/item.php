@@ -1,3 +1,7 @@
+<!-- by João Lopes & Ricardo Pinho -->
+<!-- FEUP 2013 - LAPD -->
+<!-- http://paginas.fe.up.pt/~ei10009 -->
+
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 session_start(); //we need to call PHP's session object to access it through CI
 class Item extends CI_Controller {
@@ -246,7 +250,7 @@ class Item extends CI_Controller {
         {
             $error = array('error' => $this->upload->display_errors());
 
-            echo $error;
+            echo $error["error"];
         }
         else
         {

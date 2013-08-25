@@ -1,3 +1,8 @@
+<!-- by João Lopes & Ricardo Pinho -->
+<!-- FEUP 2013 - LAPD -->
+<!-- http://paginas.fe.up.pt/~ei10009 -->
+
+
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Examples extends CI_Controller {

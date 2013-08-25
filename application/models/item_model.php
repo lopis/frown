@@ -1,3 +1,7 @@
+<!-- by João Lopes & Ricardo Pinho -->
+<!-- FEUP 2013 - LAPD -->
+<!-- http://paginas.fe.up.pt/~ei10009 -->
+
 <?php
 Class Item_model extends CI_Model
 {
@@ -80,6 +84,7 @@ Class Item_model extends CI_Model
 
  public function fillCombo()
  {
+  $dropDownList = array();
   $query = $this->db->query('select * from Type');
   $dropdowns = $query->result();
             foreach($dropdowns as $dropdown)

@@ -1,3 +1,7 @@
+<!-- by João Lopes & Ricardo Pinho -->
+<!-- FEUP 2013 - LAPD -->
+<!-- http://paginas.fe.up.pt/~ei10009 -->
+
 <?php
 	$this->load->helper('url');
 	$session_data = $this->session->userdata('logged_in');
@@ -30,6 +34,7 @@
 	<title>Frown - <?php echo $title ?></title>
     <link rel="stylesheet" href="<?php echo base_url();?>application/views/css/bootstrap-responsive.css">
     <link rel="stylesheet" href="<?php echo base_url();?>application/views/css/bootstrap.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>application/views/css/style.css">
 </head>
 <body>
 <div class="container">

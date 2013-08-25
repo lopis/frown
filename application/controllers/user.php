@@ -1,3 +1,7 @@
+<!-- by João Lopes & Ricardo Pinho -->
+<!-- FEUP 2013 - LAPD -->
+<!-- http://paginas.fe.up.pt/~ei10009 -->
+
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 session_start(); //we need to call PHP's session object to access it through CI
 class User extends CI_Controller {
@@ -36,12 +40,6 @@ class User extends CI_Controller {
         $output = $this->grocery_crud->render();
  
         $this->_example_output($output);        
-    }
- 
-    function _example_output($output = null)
- 
-    {
-        $this->load->view('template.php',$output);    
     }
 
     public function view($id)

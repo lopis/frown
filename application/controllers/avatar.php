@@ -1,3 +1,7 @@
+<!-- by João Lopes & Ricardo Pinho -->
+<!-- FEUP 2013 - LAPD -->
+<!-- http://paginas.fe.up.pt/~ei10009 -->
+
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 session_start(); //we need to call PHP's session object to access it through CI
 class Avatar extends CI_Controller {
@@ -16,13 +20,21 @@ class Avatar extends CI_Controller {
         $this->load->library('grocery_CRUD');
  
     }
+
+
+    /**
+     *  If the user is not logged in, returns to the initial page.
+     *  Add "$this->check_auth();" whever you want private access.
+     */
+    public function check_auth(){
+        if(!$this->session->userdata('logged_in')){
+            redirect('index.php', 'refresh');
+        }
+    }
  
     public function index()
     {
-        if(!$this->session->userdata('logged_in'))
-       {
-        redirect('home/login', 'refresh');
-       }
+        $this->check_auth();
         $session_data = $this->session->userdata('logged_in');
         $data['users'] = $this->User_model->fillCombo();
         $data['users']['All'] = 'All';
@@ -50,10 +62,7 @@ class Avatar extends CI_Controller {
 
     public function view($id)
     {
-        if(!$this->session->userdata('logged_in'))
-       {
-        redirect('home/login', 'refresh');
-       }
+        $this->check_auth();
         $data['avatar'] = $this->Avatar_model->get_by_id($id)->row();
         $data['title'] = 'Avatars';
         $xml = new SimpleXMLElement($data['avatar']->svg);
@@ -67,10 +76,7 @@ class Avatar extends CI_Controller {
     
     public function edit($id)
     {
-        if(!$this->session->userdata('logged_in'))
-       {
-        redirect('home/login', 'refresh');
-       }
+        $this->check_auth();
         //$items = explode(',', $this->input->post('items'));
         $avatar = array(
             'name' => $this->input->post('name'),
@@ -84,10 +90,7 @@ class Avatar extends CI_Controller {
     
     public function update($id)
     {
-        if(!$this->session->userdata('logged_in'))
-       {
-        redirect('home/login', 'refresh');
-       }
+        $this->check_auth();
         //$data['utilizador'] = $this->Utilizador_model->edit($id);
         $data['title'] = 'Avatars';
         $data['id']=$id;
@@ -101,10 +104,7 @@ class Avatar extends CI_Controller {
     
     public function delete($id)
     {
-        if(!$this->session->userdata('logged_in'))
-       {
-        redirect('home/login', 'refresh');
-       }
+        $this->check_auth();
         $this->Avatar_model->delete($id);
         $this->load->helper('url');
         redirect('avatar/index');
@@ -112,10 +112,7 @@ class Avatar extends CI_Controller {
 
     public function create()
     {
-        if(!$this->session->userdata('logged_in'))
-       {
-        redirect('home/login', 'refresh');
-       }
+        $this->check_auth();
         //$data['utilizador'] = $this->Utilizador_model->create();
         $data['title'] = 'Avatars';
         $data['items'] = $this->Item_model->get_all();
@@ -126,9 +123,7 @@ class Avatar extends CI_Controller {
     
     public function add()
     {
-        if(!$this->session->userdata('logged_in')) {
-            redirect('home/login', 'refresh');
-        }
+        $this->check_auth();
         $items = explode(',', $this->input->post('items'));
         $avatar = array(
             'name' => $this->input->post('name'),
