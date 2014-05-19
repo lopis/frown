@@ -1,9 +1,9 @@
-<!-- by João Lopes & Ricardo Pinho -->
-<!-- FEUP 2013 - LAPD -->
-<!-- http://paginas.fe.up.pt/~ei10009 -->
-
-
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+/* by João Lopes & Ricardo Pinho */
+/* FEUP 2013 - LAPD */
+/* http://paginas.fe.up.pt/~ei10009 */
+
 session_start(); //we need to call PHP's session object to access it through CI
 class Home extends CI_Controller {
 
@@ -102,3 +102,4 @@ class Home extends CI_Controller {
 
 }
 
+?>

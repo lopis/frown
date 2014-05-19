@@ -32,15 +32,15 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Frown - <?php echo $title ?></title>
-    <link rel="stylesheet" href="<?php echo base_url();?>application/views/css/bootstrap-responsive.css">
-    <link rel="stylesheet" href="<?php echo base_url();?>application/views/css/bootstrap.css">
-    <link rel="stylesheet" href="<?php echo base_url();?>application/views/css/style.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>/css/bootstrap-responsive.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>/css/bootstrap.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>/css/style.css">
 </head>
 <body>
 <div class="container">
 	<div id="logo">
 		<a href="<?php echo base_url();?>index.php/home/index">
-			<img class="logo" src="<?php echo base_url();?>application/views/img/logo.png"/>
+			<img class="logo" src="<?php echo base_url();?>/img/logo.png"/>
 		</a>
 	</div>
 

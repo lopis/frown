@@ -50,10 +50,10 @@
 <p><a href="create_manual">Manual Create</a> if you want to insert any svg</p>
 
 
-<script src="<?php echo base_url();?>application/views/templates/margin-slider/js/marginslider.js"></script>
-<script src="<?php echo base_url();?>application/javascript/jquery-1.9.1.min.js"></script>
+<script src="<?php echo base_url();?>margin-slider/js/marginslider.js"></script>
+<script src="<?php echo base_url();?>js/jquery-1.9.1.min.js"></script>
 <link rel="stylesheet" type="text/css"
-    href="<?php echo base_url();?>application/views/templates/margin-slider/css/marginslider.css">
+    href="<?php echo base_url();?>margin-slider/css/marginslider.css">
 <script type="text/javascript">
     $("div.cat").css('height', 0);
     $("div.cat ul").removeClass('marginslider');
@@ -71,4 +71,4 @@
     });
     base_url = "<?php echo base_url(); ?>";
 </script>
-<script src="<?php echo base_url();?>application/views/js/avatarscript.js"></script>
+<script src="<?php echo base_url();?>js/avatarscript.js"></script>

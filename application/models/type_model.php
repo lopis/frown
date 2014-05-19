@@ -1,8 +1,7 @@
-<!-- by João Lopes & Ricardo Pinho -->
-<!-- FEUP 2013 - LAPD -->
-<!-- http://paginas.fe.up.pt/~ei10009 -->
-
 <?php
+/* by João Lopes & Ricardo Pinho */
+/* FEUP 2013 - LAPD */
+/* http://paginas.fe.up.pt/~ei10009 */
 Class Type_model extends CI_Model
 {
 

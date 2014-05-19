@@ -1,8 +1,8 @@
-<!-- by João Lopes & Ricardo Pinho -->
-<!-- FEUP 2013 - LAPD -->
-<!-- http://paginas.fe.up.pt/~ei10009 -->
-
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+/* by João Lopes & Ricardo Pinho */
+/* FEUP 2013 - LAPD */
+/* http://paginas.fe.up.pt/~ei10009 */
 
 class Register extends CI_Controller {
 
